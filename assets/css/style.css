@@ -95,7 +95,9 @@ main, .codetalkshare-icons, .codetalkdisqus {
       -ms-transform: translate3d(0, 0, 0);
       -moz-transform: translate3d(0, 0, 0);
       -o-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0); }
+      transform: translate3d(0, 0, 0);
+      position: absolute;
+        z-index: 999; }
   @media only screen and (min-width: 40.063em) {
     .codetalkblog-menu {
       padding-top: 1.75rem;
@@ -182,7 +184,7 @@ main, .codetalkshare-icons, .codetalkdisqus {
     margin-bottom: 0.9375rem; }
   .codetalksite-head .codetalksite-head-content h2 {
     font-size: 2rem;
-    padding-top: 8px;;
+    padding: 10px 0px 10px 0px;
     font-weight: 700;
     line-height: 1.3; }
   @media only screen and (min-width: 40.063em) {
@@ -190,27 +192,27 @@ main, .codetalkshare-icons, .codetalkdisqus {
       font-size: 1rem; }
     .codetalksite-head .codetalksite-head-content h2 {
       font-size: 3.75rem;
-      padding-bottom: 10px;
+      padding: 10px 0px 10px 0px;
       font-weight: 700; } }
   @media only screen and (min-width: 70em) {
     .codetalksite-head .codetalksite-head-content h1 {
       font-size: 1rem; }
     .codetalksite-head .codetalksite-head-content h2 {
       font-size: 4.375rem;
-      padding-bottom: 10px;
+      padding: 10px 0px 10px 0px;
       font-weight: 700; } }
   @media only screen and (min-width: 90em) {
     .codetalksite-head .codetalksite-head-content h1 {
        }
     .codetalksite-head .codetalksite-head-content h2 {
       font-size: 5rem;
-      padding-bottom: 10px; } }
+      padding: 10px 0px 10px 0px; } }
   @media only screen and (min-width: 100em) {
     .codetalksite-head .codetalksite-head-content h1 {
        }
     .codetalksite-head .codetalksite-head-content h2 {
       font-size: 6.25rem;
-      padding-bottom: 10px; } }
+      padding: 10px 0px 10px 0px; } }
 
 .codetalkcontent .codetalkindex-post {
   visibility: hidden;
