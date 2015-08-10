@@ -410,8 +410,8 @@ html, body, .codetalkpost-container, .codetalkpost-header {
     font-weight: 800;
     font-size: 3.125rem;
     padding: 0;
-    padding-top: 5rem;
-    padding-bottom: 4.375rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     margin: 0 auto;
     line-height: 1.1;
     text-align: center;
@@ -420,19 +420,19 @@ html, body, .codetalkpost-container, .codetalkpost-header {
       .codetalkpage-title h1,
       .codetalkpost-title-simple h1 {
         font-size: 4.375rem;
-        padding-top: 5.625rem;
-        padding-bottom: 5.625rem; } }
+        padding-top: 2rem;
+        padding-bottom: 2rem; } }
     @media only screen and (min-width: 70em) {
       .codetalkpage-title h1,
       .codetalkpost-title-simple h1 {
-        padding-top: 6.875rem;
-        padding-bottom: 6.875rem; } }
+        padding-top: 2rem;
+        padding-bottom: 2rem; } }
     @media only screen and (min-width: 90em) {
       .codetalkpage-title h1,
       .codetalkpost-title-simple h1 {
         font-size: 5.3125rem;
-        padding-top: 8.125rem;
-        padding-bottom: 8.125rem; } }
+        padding-top: 2rem;
+        padding-bottom: 2rem; } }
   .codetalkpage-title .codetalkpost-meta-simple,
   .codetalkpost-title-simple .codetalkpost-meta-simple {
     text-align: center;
