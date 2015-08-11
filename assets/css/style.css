@@ -145,7 +145,9 @@ main, .codetalkshare-icons, .codetalkdisqus {
   .codetalksite-head .codetalksite-head-menu .codetalkblog-logo {
     float: left;
     display: inline-block;
-    max-height: 5rem; }
+    max-height: 5rem;
+    max-width: 80%;
+   }
     .codetalksite-head .codetalksite-head-menu .codetalkblog-logo img {
       max-height: 5rem; }
   .codetalksite-head .codetalksite-head-menu .title {
