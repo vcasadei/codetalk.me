@@ -180,6 +180,13 @@ main, .codetalkshare-icons, .codetalkdisqus {
       color: black; }
       .codetalksite-head .codetalksite-head-menu .title a:hover {
         color: black; }
+
+.readmore-link{
+    color: #1976D2;
+}
+.readmore-link:hover {
+    color: #06539f;
+}
 .codetalksite-head .codetalksite-head-content {
   width: 100%;
   text-align: center;
