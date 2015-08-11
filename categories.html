@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Categories
-permalink: /categories/index.html
+permalink: /categories/
 title: Categories
 tags: [Categories]
 description: "An archive of posts sorted by categories."
@@ -9,23 +9,41 @@ description: "An archive of posts sorted by categories."
 ---
 
 <ul class="tag-box inline">
-{% assign tags_list = site.categories %}  
+{% assign tags_list = site.categories %}
   {% if tags_list.first[0] == null %}
-    {% for tag in tags_list %} 
-      <li><a href="#{{ tag }}">{{ tag | capitalize }} <span>{{ site.tags[tag].size }}</span></a></li>
+    {% for tag in tags_list %}
+      {% assign words = tag | split: "-" %}
+      {% assign this_category = "" %}
+      {% for word in words %}
+        {% assign aux = word | capitalize %}
+        {% capture this_category %}{{ this_category }} {{ aux }}{% endcapture %}
+      {% endfor %}
+      <li><a href="#{{ tag }}">{{ this_category }} <span>{{ site.tags[tag].size }}</span></a></li>
     {% endfor %}
   {% else %}
-    {% for tag in tags_list %} 
-      <li><a href="#{{ tag[0] }}">{{ tag[0] | capitalize }} <span>{{ tag[1].size }}</span></a></li>
+    {% for tag in tags_list %}
+      {% assign words = tag[0] | split: "-" %}
+      {% assign this_category = "" %}
+      {% for word in words %}
+        {% assign aux = word | capitalize %}
+        {% capture this_category %}{{ this_category }} {{ aux }}{% endcapture %}
+      {% endfor %}
+      <li><a href="#{{ tag[0] }}">{{ this_category }} <span>{{ tag[1].size }}</span></a></li>
     {% endfor %}
   {% endif %}
 {% assign tags_list = nil %}
 </ul>
 
-{% for tag in site.categories %} 
-  <h2 id="{{ tag[0] }}">{{ tag[0] | capitalize }}</h2>
+{% for tag in site.categories %}
+  {% assign words = tag[0] | split: "-" %}
+  {% assign this_category = "" %}
+  {% for word in words %}
+    {% assign aux = word | capitalize %}
+    {% capture this_category %}{{ this_category }} {{ aux }}{% endcapture %}
+  {% endfor %}
+  <h2 id="{{ tag[0] }}">{{ this_category }}</h2>
   <ul class="post-list">
-    {% assign pages_list = tag[1] %}  
+    {% assign pages_list = tag[1] %}
     {% for post in pages_list %}
       {% if post.title != null %}
       {% if group == null or group == post.group %}

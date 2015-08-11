@@ -129,16 +129,21 @@ main, .codetalkshare-icons, .codetalkdisqus {
           .codetalkblog-menu ul li a {
             color: black;
             display: inline-block;
-            border-bottom: 0.1875rem solid transparent;
+            /*border-bottom: 0.1875rem solid transparent;*/
             width: auto;
             height: auto; }
             .codetalkblog-menu ul li a:hover {
               border-bottom: 0.1875rem solid #1976D2; } }
+              .current-page {
+                border-bottom: 0.1875rem solid #1976D2;
+              }
 
 .codetalksite-head .codetalksite-head-menu {
-  background: #FFF; 
+  padding: 10px;
+  background: #FFF;
 }
   .codetalksite-head .codetalksite-head-menu .codetalkblog-logo {
+    float: left;
     display: inline-block;
     max-height: 5rem; }
     .codetalksite-head .codetalksite-head-menu .codetalkblog-logo img {
@@ -164,7 +169,7 @@ main, .codetalkshare-icons, .codetalkdisqus {
   width: 100%;
   text-align: center;
   background-color: #1976D2;
-  
+
   background-size: cover; }
   .codetalksite-head .codetalksite-head-content.with-bg-cover {
     background-color: rgba(0, 0, 0, 0.7); }
@@ -220,7 +225,7 @@ main, .codetalkshare-icons, .codetalkdisqus {
   padding-bottom: 2.5rem;
   border-bottom: 0.0625rem solid #d9d9d9; }
   .codetalkcontent .codetalkindex-post:first-of-type {
-    padding-top: 5rem; }
+     }
   .codetalkcontent .codetalkindex-post .datetime {
     margin-bottom: 2.5rem; }
   @media only screen and (min-width: 40.063em) {
@@ -228,7 +233,7 @@ main, .codetalkshare-icons, .codetalkdisqus {
       padding-top: 4.375rem;
       padding-bottom: 4.375rem; }
       .codetalkcontent .codetalkindex-post:first-of-type {
-        padding-top: 7.5rem; }
+         }
       .codetalkcontent .codetalkindex-post .datetime {
         margin-bottom: 0; } }
   .codetalkcontent .codetalkindex-post .codetalkpost-meta {
@@ -238,7 +243,7 @@ main, .codetalkshare-icons, .codetalkdisqus {
       display: block;
       font-size: 3.25rem;
       font-weight: 800;
-      color: #e51843;
+      color: #279800;
       font-family: "Montserrat", sans-serif; }
     .codetalkcontent .codetalkindex-post .codetalkpost-meta .month-year {
       display: block;
@@ -339,8 +344,8 @@ nav.pagination {
     border: 0.125rem solid black; }
   nav.pagination .newer-posts:hover,
   nav.pagination .older-posts:hover {
-    border: 0.125rem solid #e51843;
-    color: #e51843; }
+    border: 0.125rem solid #279800;
+    color: #279800; }
   nav.pagination .newer-posts.faded,
   nav.pagination .older-posts.faded {
     color: gray;
@@ -617,7 +622,7 @@ figcaption {
 }
 /* =====================================
  * :: Select Text to Share CSS
- * 
+ *
  * @ Author: Hadrien Boyer
  * @ Website: http://hadrien-boyer.fr
  * @ v.0.1 - Last update : 2014/06/29
@@ -685,7 +690,7 @@ figcaption {
   top:0;
   left:0;
 }
-.tooltipContainer a { 
+.tooltipContainer a {
   width: 100%;
   background:transparent url(/images/sprites.png) 0px 0px no-repeat;
   padding:0;

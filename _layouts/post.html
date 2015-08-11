@@ -4,12 +4,12 @@
 {% include head.html %}
 {% if site.dropcap %}<style type="text/css">@media only screen and (min-width:43.75em){.codetalkpost-content div>p:first-child:first-letter{float:left;font-size:4.688rem;line-height:4.375rem;padding-top:.25rem;padding-right:.5rem;padding-left:.188rem;font-family:serif}}</style>{% endif %}
 </head>
-<body class="post-template" itemscope itemtype="http://schema.org/WebPage">  
+<body class="post-template" itemscope itemtype="http://schema.org/WebPage">
 {% if page.imagefeature %}
         <main id="codetalkpost-container" class="codetalkpost-container intro-effect-sliced" role="main">
             <header class="codetalkpost-header">
                 <div class="bg-img"></div>
-                
+
                 <div class="codetalkpost-menu-header">
 {% else %}
         <main id="codetalkpost-container-simple" class="codetalkpost-container-simple" role="main">
@@ -20,7 +20,7 @@
                         <img src="{{ site.url }}/images/{{ site.logo }}" alt="Blog Logo" />
                     </a>
 
-                <div class="codetalkblog-menu">      
+                <div class="codetalkblog-menu">
     <div class="codetalkmobile-menu show-for-small">
         <a href="#"><i class="fa fa-bars"></i></a>
     </div>
@@ -32,13 +32,28 @@
             <li>{% if link.external %}
                     <a href="{{ link.url }}">{{ link.title }}</a>
                 {% else %}
+                  {% if link.title == "Articles" %}
+                    <a class="current-page" href="{{ site.url }}{{ link.url }}">{{ link.title }}</a>
+                  {% else %}
                     <a href="{{ site.url }}{{ link.url }}">{{ link.title }}</a>
+                  {% endif %}
                 {% endif %} </li>
-{% endfor %}            
+{% endfor %}
            <li><a href="{{ site.url }}/feed.xml" title="Atom/RSS feed"><i class="icon-rss"></i> Feed</a></li>
     </ul>
 
 </div>
+            </div>
+            <div class="codetalk-breadcrumb">
+              {% assign words = page.category | split: "-" %}
+              {% assign this_category = "" %}
+              {% for word in words %}
+                {% assign aux = word | capitalize %}
+                {% capture this_category %}{{ this_category }} {{ aux }}{% endcapture %}
+              {% endfor %}
+              <p>
+                <a href="{{ site.url }}/">Home</a> <i class="fa fa-angle-right"></i> <a href="{{ site.url }}/">Articles</a> <i class="fa fa-angle-right"></i> <a href="{{ site.url }}/categories/index.html#{{ page.category }}">{{this_category}}</a> <i class="fa fa-angle-right"></i> <a href="{{ page.url }}">{{ page.title }}</a>
+              </p>
             </div>
 {% if page.imagefeature %}
             <div class="codetalkpost-title bg-check">
@@ -54,7 +69,7 @@
                     <div class="small-12 columns">
                         <div class="codetalkpost-meta-simple">
                             <h1>{{ page.title }}</h1>
-                            <p>by <strong>{{ site.owner.name }}</strong> &#8212; {% assign tagsize = page.tags.size %}{% if tagsize != 0 %}on {% for tag in page.tags %}<a href="{{ site.url }}/tags/index.html#{{ tag | cgi_encode }}" data-toggle="tooltip" title="Posts tagged with {{ tag }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}&nbsp;&comma;&nbsp;{% endunless %}{% endfor %}{% endif %} <strong><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time></strong></p>
+                            <p>by <strong><a target="_blank" href="http://casadei.io">{{ site.owner.name }}</a></strong> &#8212; on <a href="{{ site.url }}/categories/index.html#{{ page.category }}">{{this_category}}</a> | {% assign tagsize = page.tags.size %}{% if tagsize != 0 %}{% if tagsize > 1 %}<i class="fa fa-tags"></i> {% else %}<i class="fa fa-tags"></i> {% endif %} {% for tag in page.tags %}<a href="{{ site.url }}/tags/index.html#{{ tag | cgi_encode }}" data-toggle="tooltip" title="Posts tagged with {{ tag }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}&nbsp;&comma;&nbsp;{% endunless %}{% endfor %}{% endif %} &#8212; <strong><i class="fa fa-calendar"></i> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time></strong></p>
                         </div>
                     </div>
                 </div>
@@ -67,9 +82,9 @@
         <div class="cf"></div>
 {% if site.share %}{% include share.html %}{% endif %}
         <div class="cf"></div>
-        
-{% include signoff.html %} 
-        
+
+{% include signoff.html %}
+
         <div class="cf"></div>
         {% if site.disqus_shortname and page.comments == true %}
         <section class="codetalkdisqus row">
@@ -82,8 +97,8 @@
 {% endif %}
         <div class="cf"></div>
 
-    {% include footer.html %} 
-</main>    
-{% include scripts.html %} 
+    {% include footer.html %}
+</main>
+{% include scripts.html %}
 </body>
 </html>

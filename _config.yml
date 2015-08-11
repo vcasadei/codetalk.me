@@ -1,11 +1,11 @@
-title:            CodeTalk - A blog about Code and Technology 
+title:            CodeTalk - A blog about Code and Technology
 description:      "A blog about code and Technology"
 logo:             logo.png
 disqus_shortname: vcasadei
 share:            true
 dropcap:			true
 # Change url to your domain. Leave localhost server or blank when working locally.
-# or use the hint from http://jekyllrb.com/docs/github-pages/ to keep this the same 
+# or use the hint from http://jekyllrb.com/docs/github-pages/ to keep this the same
 # whether working locally or remotely. Start Jekyll with: jekyll serve --baseurl ''
 url:        	  ''
 
@@ -19,7 +19,7 @@ owner:
   # Social networking links used in footer. Update and remove as you like.
   twitter:        vcasadei
   facebook:       vitor.casadei
-  github:         vcasadei      
+  github:         vcasadei
   instagram:      vcasadei
   # For Google Authorship https://plus.google.com/authorship
   google_plus:    https://plus.google.com/+VitorCasadei
@@ -27,12 +27,12 @@ owner:
 # Analytics and webmaster tools stuff goes here
 google_analytics:   UA-66157305-1
 google_verify:      true
-bing_verify:         
+bing_verify:
 
 # Links to include in footer navigation
 # For external links add external: true
 links:
-  - title: Home
+  - title: Articles
     url: /
     external: false
     icon: home
@@ -60,7 +60,7 @@ kramdown:
   use_coderay: false
 
   coderay:
-    coderay_line_numbers: 
+    coderay_line_numbers:
     coderay_line_numbers_start: 1
     coderay_tab_width: 4
     coderay_bold_every: 10
@@ -120,8 +120,8 @@ prose:
               value: psychology
             - name: "Interesting"
               value: interesting
-            - name: "Web-Development"
-              value: webdevelopment
+            - name: "Web Development"
+              value: web-development
               name: "Education"
               value: education
               name: "Technology"
@@ -129,7 +129,7 @@ prose:
               name: "Back-End"
               value: backend
               name: "Front-End"
-              value: frontend 
+              value: frontend
               name: "JavaScript"
               value: javascript
               name: "Python"

@@ -8,9 +8,9 @@
 <header class="codetalksite-head">
     <div class="codetalksite-head-menu">
         <a class="codetalkblog-logo" href="{{ site.url }}/"><img src="{{ site.url }}/images/{{ site.logo }}" alt="Blog Logo" /></a>
-        
-        
-        <div class="codetalkblog-menu">      
+
+
+        <div class="codetalkblog-menu">
     <div class="codetalkmobile-menu show-for-small">
         <a href="#"><i class="fa fa-bars"></i></a>
     </div>
@@ -22,9 +22,19 @@
             <li>{% if link.external %}
             <a href="{{ link.url }}">{{ link.title }}</a>
             {% else %}
-            <a href="{{ site.url }}{{ link.url }}">{{ link.title }}</a>
+              {% if link.title == "Articles" %}
+                <a class="current-page" href="{{ site.url }}{{ link.url }}">{{ link.title }}</a>
+              {% else %}
+                {% if link.title == page.title %}
+                  <a class="current-page" href="{{ site.url }}{{ link.url }}">{{ link.title }}</a>
+                {% else %}
+                  <a href="{{ site.url }}{{ link.url }}">{{ link.title }}</a>
+                {% endif %}
+              {% endif %}
+
+
             {% endif %} </li>
-{% endfor %}            
+{% endfor %}
            <li><a href="{{ site.url }}/feed.xml" title="Atom/RSS feed"><i class="icon-rss"></i> Feed</a></li>
     </ul>
 </div>
@@ -44,6 +54,6 @@
 </main>
     {% include footer.html %}
 
-{% include scripts.html %}  
+{% include scripts.html %}
 </body>
 </html>

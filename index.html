@@ -1,6 +1,6 @@
 ---
 layout: home
-title: 
+title:
 description: "A coding blog about code and technology by Vitor Casadei, a Computer Scientist from Brazil."
 headline: A Computer Scientist thoughts
 tags: [Vitor, Casadei, technology, coding, blog, computer scientist]
@@ -31,19 +31,27 @@ tags: [Vitor, Casadei, technology, coding, blog, computer scientist]
             <section class="codetalkpost-excerpt">
                 <p>{{ post.content | strip_html | truncatewords:40 }}</p>
             </section>
-            
+
                 <div class="codetalkindex-post-tags">
-                {% for tag in post.categories %}<a href="{{ site.url }}/categories/index.html#{{ post.categories | cgi_encode }}" title="Other posts from the {{ tag | capitalize }} category">{{ tag | capitalize }}</a>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}
-                    
+                {% for tag in post.categories %}
+									{% assign words = tag | split: "-" %}
+						      {% assign this_category = "" %}
+						      {% for word in words %}
+						        {% assign aux = word | capitalize %}
+						        {% capture this_category %}{{ this_category }} {{ aux }}{% endcapture %}
+						      {% endfor %}
+								<a href="{{ site.url }}/categories/index.html#{{ post.categories | cgi_encode }}" title="Other posts from the {{ tag | capitalize }} category">{{ this_category }}</a>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}
+
                 </div>
-            
+
         </div>
     </article>
 	{% endfor %}
     <nav class="pagination" role="navigation">
-    {% if paginator.previous_page %}
+  {% if paginator.previous_page %}
+
 	    {% if paginator.previous_page == 1 %}
-	    <a class="newer-posts" href="{{ site.url }}"><i class="fa fa-chevron-left"></i> Newer</a>
+	    <a class="newer-posts" href="{{ site.url }}/"><i class="fa fa-chevron-left"></i> Newer</a>
 	    {% else %}
 	    <a class="newer-posts" href="{{ site.url }}/page{{ paginator.previous_page }}"><i class="fa fa-chevron-left"></i> Newer</a>
 	    {% endif %}
@@ -51,9 +59,9 @@ tags: [Vitor, Casadei, technology, coding, blog, computer scientist]
     <span class="newer-posts faded"><i class="fa fa-chevron-left"></i> Newer</span>
     {% endif %}
 
-    
+
     <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-    	{% if paginator.next_page %} 
+    	{% if paginator.next_page %}
         <a class="older-posts" href="{{ site.url }}/page{{ paginator.next_page }}/">Older <i class="fa fa-chevron-right"></i></a>
     	{% else %}
     	<span class="older-posts faded">Older <i class="fa fa-chevron-right"></i></span>
@@ -85,13 +93,13 @@ tags: [Vitor, Casadei, technology, coding, blog, computer scientist]
             <section class="codetalkpost-excerpt">
                 <p>{{ post.content | strip_html | truncatewords:100 }}</p>
             </section>
-            
+
                 <div class="codetalkindex-post-tags">
                 {% for tag in post.categories %}<a href="{{ site.url }}/categories/index.html#{{ post.categories | cgi_encode }}" title="Other posts from the {{ tag | capitalize }} category">{{ tag | capitalize }}</a>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}
-                    
+
                 </div>
-            
+
         </div>
     </article>
-	{% endfor %}  
+	{% endfor %}
 {% endif %}

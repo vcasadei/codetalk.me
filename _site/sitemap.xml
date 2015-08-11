@@ -10,11 +10,11 @@
     </url>
     
     <url>
-        <loc>/about/index.html</loc>
+        <loc>/about/</loc>
     </url>
     
     <url>
-        <loc>/categories/index.html</loc>
+        <loc>/categories/</loc>
     </url>
     
     <url>
@@ -52,7 +52,7 @@
 
     
     <url>
-        <loc>/webdevelopment/why-jekyll</loc>
+        <loc>/web-development/why-jekyll</loc>
     </url>
     
     <url>

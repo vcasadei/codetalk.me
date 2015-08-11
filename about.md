@@ -1,7 +1,7 @@
 ---
 layout: page
-permalink: /about/index.html
-title: Hossain Mohd Faysal
+permalink: /about/
+title: About
 tags: [Hossain, Mohd, Faysal, hmfaysal]
 imagefeature: fourseasons.jpg
 chart: true
