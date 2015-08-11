@@ -224,7 +224,9 @@
                     <div class="small-12 columns">
                         <div class="codetalkpost-meta-simple">
                             <h1>{{ page.title }}</h1>
-                            <p>by <strong><a target="_blank" href="http://casadei.io">{{ site.owner.name }}</a></strong> &#8212; on <a href="{{ site.url }}/categories/index.html#{{ page.category }}">{{this_category}}</a> | {% assign tagsize = page.tags.size %}{% if tagsize != 0 %}{% if tagsize > 1 %}<i class="fa fa-tags"></i> {% else %}<i class="fa fa-tags"></i> {% endif %} {% for tag in page.tags %}<a href="{{ site.url }}/tags/index.html#{{ tag | cgi_encode }}" data-toggle="tooltip" title="Posts tagged with {{ tag }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}&nbsp;&comma;&nbsp;{% endunless %}{% endfor %}{% endif %} &#8212; <strong><i class="fa fa-calendar"></i> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time></strong></p>
+                            <span>by <strong><a target="_blank" href="http://casadei.io">{{ site.owner.name }}</a></strong>  &#8212; <strong><i class="fa fa-calendar"></i> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time></strong></span> 
+                                
+                            <span>on <a href="{{ site.url }}/categories/index.html#{{ page.category }}">{{this_category}}</a> | {% assign tagsize = page.tags.size %}{% if tagsize != 0 %}{% if tagsize > 1 %}<i class="fa fa-tags"></i> {% else %}<i class="fa fa-tags"></i> {% endif %} {% for tag in page.tags %}<a href="{{ site.url }}/tags/index.html#{{ tag | cgi_encode }}" data-toggle="tooltip" title="Posts tagged with {{ tag }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}&nbsp;&comma;&nbsp;{% endunless %}{% endfor %}{% endif %}</span>
                         </div>
                     </div>
                 </div>

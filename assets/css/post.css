@@ -445,7 +445,7 @@ html, body, .codetalkpost-container, .codetalkpost-header {
   width: 100%;
   color: 404040;
   text-align: center;
-  z-index:9999999;
+  z-index:99;
   /*margin: 0px 30px 0px 30px;*/
 }
 
