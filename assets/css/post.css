@@ -39,9 +39,9 @@ html, body, .codetalkpost-container, .codetalkpost-header {
   /* -------------------------- */
   /* Delays */ }
   .post-template .codetalkblog-menu .codetalkmobile-menu a {
-    color: white; }
+    color: black; }
     .post-template .codetalkblog-menu .codetalkmobile-menu a:hover {
-      color: white; }
+      color: black; }
   @media only screen and (min-width: 40.063em) {
     .current-page {
       border-bottom: 0.1875rem solid #1976D2;
@@ -68,7 +68,7 @@ html, body, .codetalkpost-container, .codetalkpost-header {
       z-index: 9999; }
       .post-template .codetalkpost-header .codetalkpost-menu-header .codetalkblog-logo {
         display: inline-block;
-        max-height: 5rem; }
+        max-height: 5rem; max-width: 80%; }
         .post-template .codetalkpost-header .codetalkpost-menu-header .codetalkblog-logo img {
           max-height: 5rem; }
   .post-template .bg-img {
@@ -428,7 +428,8 @@ html, body, .codetalkpost-container, .codetalkpost-header {
   .codetalkpage-menu-header .codetalkblog-logo,
   .codetalkpost-menu-header-simple .codetalkblog-logo {
     display: inline-block;
-    max-height: 5rem; }
+    max-height: 5rem;
+  max-width: 80%; }
     .codetalkpage-menu-header .codetalkblog-logo img,
     .codetalkpost-menu-header-simple .codetalkblog-logo img {
       max-height: 5rem; }
