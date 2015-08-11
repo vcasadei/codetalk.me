@@ -159,7 +159,7 @@ main, .codetalkshare-icons, .codetalkdisqus {
     float: left;
     display: inline-block;
     max-height: 5rem;
-    max-width: 80%;
+    max-width: 65%;
    }
     .codetalksite-head .codetalksite-head-menu .codetalkblog-logo img {
       max-height: 5rem; }
@@ -766,6 +766,15 @@ figcaption {
 .mfp-align-top .mfp-container:before {
   display: none; }
 
+.high-contrast {
+    background-color: #101010;
+    color: white;
+    -webkit-transition: all 0.3s ease-in-out;
+  	-moz-transition: all 0.3s ease-in-out;
+  	-ms-transition: all 0.3s ease-in-out;
+  	-o-transition: all 0.3s ease-in-out;
+  	transition: all 0.3s ease-in-out;
+}
 .mfp-content {
   position: relative;
   display: inline-block;

@@ -80,7 +80,7 @@ html, body, .codetalkpost-container, .codetalkpost-header {
       z-index: 9999; }
       .post-template .codetalkpost-header .codetalkpost-menu-header .codetalkblog-logo {
         display: inline-block;
-        max-height: 5rem; max-width: 80%; }
+        max-height: 5rem; max-width: 65%; }
         .post-template .codetalkpost-header .codetalkpost-menu-header .codetalkblog-logo img {
           max-height: 5rem; }
   .post-template .bg-img {
@@ -199,7 +199,13 @@ html, body, .codetalkpost-container, .codetalkpost-header {
     -moz-osx-font-smoothing: grayscale; }
   .post-template .codetalkpost-content {
     margin: 0 auto;
-    padding: 0; }
+    padding: 0;
+    -webkit-transition: all 0.3s ease-in-out;
+  	-moz-transition: all 0.3s ease-in-out;
+  	-ms-transition: all 0.3s ease-in-out;
+  	-o-transition: all 0.3s ease-in-out;
+  	transition: all 0.3s ease-in-out;
+ }
     .post-template .codetalkpost-content > div:not(.codetalkpost-title) {
       margin: -25% auto 0;
       padding-left: 1.875rem;
@@ -427,6 +433,48 @@ html, body, .codetalkpost-container, .codetalkpost-header {
   color: white;
   text-decoration: none;
 }
+
+.scroller_anchor{height:0px; margin:0; padding:0;}
+
+.codetalk-post-control {
+
+    /*position: fixed;*/
+    margin-top: -20px;
+    padding-top: 5px;
+  background-color: rgba(29, 29, 29, 0.74);
+  width: 100%;
+  color: 404040;
+  text-align: center;
+  z-index:9999999;
+  /*margin: 0px 30px 0px 30px;*/
+}
+
+#progr {
+    height: 3px;
+    margin-top: 5px;
+}
+
+.codetalk-post-control span{
+  color: #d2d2d2;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.codetalk-post-control a {
+  padding: 0 0.5% 0 0.5%;
+  color: #d2d2d2;
+  text-decoration: underline;
+}
+.codetalk-post-control a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.codetalk-post-control .fa-plus, .codetalk-post-control .fa-minus {
+  font-size: 10px;
+}
+
+
 .codetalkpage-menu-header,
 .codetalkpost-menu-header-simple {
   padding: 10px;
@@ -441,7 +489,7 @@ html, body, .codetalkpost-container, .codetalkpost-header {
   .codetalkpost-menu-header-simple .codetalkblog-logo {
     display: inline-block;
     max-height: 5rem;
-  max-width: 80%; }
+  max-width: 65%; }
     .codetalkpage-menu-header .codetalkblog-logo img,
     .codetalkpost-menu-header-simple .codetalkblog-logo img {
       max-height: 5rem; }
