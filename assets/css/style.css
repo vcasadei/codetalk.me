@@ -55,7 +55,7 @@ main, .codetalkshare-icons, .codetalkdisqus {
     .codetalkblog-menu .codetalkmobile-menu a:hover {
       color: black; }
   .codetalkblog-menu ul {
-    background: rgb(25, 118, 210, 0.8);
+    background: black;
     position: absolute;
     width: 100%;
     -webkit-transform: translate3d(0, -110%, 0);
