@@ -9,7 +9,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="/feed.xml" />
 <link rel="alternate" type="text/html" href="/" />
-<updated>2015-08-10T23:09:25-03:00</updated>
+<updated>2015-08-10T23:23:24-03:00</updated>
 <id>/</id>
 <author>
   <name>Vitor Casadei</name>
@@ -274,7 +274,7 @@ You can set post image covers by using only Ghost narkdown editor just place som
   &lt;span class=&quot;l-Scalar-Plain&quot;&gt;use_coderay&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;false&lt;/span&gt;
 
   &lt;span class=&quot;l-Scalar-Plain&quot;&gt;coderay&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;coderay_line_numbers&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; 
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;coderay_line_numbers&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;l-Scalar-Plain&quot;&gt;coderay_line_numbers_start&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;1&lt;/span&gt;
     &lt;span class=&quot;l-Scalar-Plain&quot;&gt;coderay_tab_width&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;4&lt;/span&gt;
     &lt;span class=&quot;l-Scalar-Plain&quot;&gt;coderay_bold_every&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;10&lt;/span&gt;
@@ -294,7 +294,7 @@ You can set post image covers by using only Ghost narkdown editor just place som
 &lt;span class=&quot;l-Scalar-Plain&quot;&gt;modified&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;YYYY-MM-DD&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;				&lt;/span&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;# Date&lt;/span&gt;
 &lt;span class=&quot;l-Scalar-Plain&quot;&gt;category&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;personal&lt;/span&gt;
 &lt;span class=&quot;l-Scalar-Plain&quot;&gt;tags&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;[]&lt;/span&gt;
-&lt;span class=&quot;l-Scalar-Plain&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; 
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;l-Scalar-Plain&quot;&gt;feature&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;some-image.jpg&lt;/span&gt;
 &lt;span class=&quot;l-Scalar-Plain&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;true&lt;/span&gt;
 &lt;span class=&quot;l-Scalar-Plain&quot;&gt;mathjax&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;

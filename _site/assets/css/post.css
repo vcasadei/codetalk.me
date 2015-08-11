@@ -8,7 +8,19 @@
   clear: both; }
 
 html, body, .codetalkpost-container, .codetalkpost-header {
-  height: 100%; }
+  height: 100%;
+  -ms-word-break: break-all;
+       word-break: break-all;
+
+       /* Non standard for webkit */
+       word-break: break-word;
+
+  -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+      -ms-hyphens: auto;
+          hyphens: auto; }
+
+
 
 .codetalkpost-header-title {
   display: inline-block;

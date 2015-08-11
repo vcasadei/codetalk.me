@@ -7,9 +7,8 @@
 <meta name="keywords" content="how-to">
 
 <!-- Twitter Cards -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="/images/cover10.jpg">
-
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/images/logo.png">
 <meta name="twitter:title" content="Documentation">
 <meta name="twitter:description" content="Instructions on how to install and customize the HMFAYSAL Notepad Theme.">
 <meta name="twitter:creator" content="@vcasadei">
@@ -21,7 +20,7 @@
 <meta property="og:description" content="Instructions on how to install and customize the HMFAYSAL Notepad Theme.">
 <meta property="og:url" content="/theme/documentation">
 <meta property="og:site_name" content="CodeTalk - A blog about Code and Technology">
-<meta property="og:image" content="/images/cover10.jpg">
+<meta property="og:image" content="/images/">
 
 <meta name="google-site-verification" content="true">
 
@@ -66,11 +65,9 @@
 </head>
 <body class="post-template" itemscope itemtype="http://schema.org/WebPage">
 
-        <main id="codetalkpost-container" class="codetalkpost-container intro-effect-sliced" role="main">
-            <header class="codetalkpost-header">
-                <div class="bg-img"></div>
-
-                <div class="codetalkpost-menu-header">
+        <main id="codetalkpost-container-simple" class="codetalkpost-container-simple" role="main">
+            <header class="codetalkpost-header-simple">
+                <div class="codetalkpost-menu-header-simple">
 
                     <a class="codetalkblog-logo" href="/">
                         <img src="/images/logo.png" alt="Blog Logo" />
@@ -120,16 +117,17 @@
               </p>
             </div>
 
-            <div class="codetalkpost-title bg-check">
-                <h1>Documentation</h1>
-                <p>by <strong>Vitor Casadei</strong> &#8212; on <a href="/tags/index.html#how-to" data-toggle="tooltip" title="Posts tagged with how-to" rel="tag">how-to</a> <strong><time datetime="2014-06-19T00:00:00-03:00">19 Jun 2014</time></strong></p>
-            </div>
-            <div class="bg-img"></div>
-        </header>
-        <button class="trigger bg-check" data-info="Read more"><span>Trigger</span></button>
-        <img src="/images/cover10.jpg" alt="cover-image" />
+                <div class="codetalkpost-title-simple row">
+                    <div class="small-12 columns">
+                        <div class="codetalkpost-meta-simple">
+                            <h1>Documentation</h1>
+                            <p>by <strong><a target="_blank" href="http://casadei.io">Vitor Casadei</a></strong> &#8212; on <a href="/categories/index.html#theme"> Theme</a> | <i class="fa fa-tags"></i>  <a href="/tags/index.html#how-to" data-toggle="tooltip" title="Posts tagged with how-to" rel="tag">how-to</a> &#8212; <strong><i class="fa fa-calendar"></i> <time datetime="2014-06-19T00:00:00-03:00">19 Jun 2014</time></strong></p>
+                        </div>
+                    </div>
+                </div>
+            </header>
 
-        <article class="codetalkpost-content post">
+        <article class="codetalkpost-content post tag-simple">
             <div><p>General notes and suggestions for customizing <strong>HMFAYSAL Notepad Theme</strong>.</p>
 
 <section id="table-of-contents" class="toc">
@@ -277,7 +275,7 @@
   <span class="l-Scalar-Plain">use_coderay</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
 
   <span class="l-Scalar-Plain">coderay</span><span class="p-Indicator">:</span>
-    <span class="l-Scalar-Plain">coderay_line_numbers</span><span class="p-Indicator">:</span> 
+    <span class="l-Scalar-Plain">coderay_line_numbers</span><span class="p-Indicator">:</span>
     <span class="l-Scalar-Plain">coderay_line_numbers_start</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">1</span>
     <span class="l-Scalar-Plain">coderay_tab_width</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">4</span>
     <span class="l-Scalar-Plain">coderay_bold_every</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">10</span>
@@ -297,7 +295,7 @@
 <span class="l-Scalar-Plain">modified</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">YYYY-MM-DD</span><span class="err">				</span><span class="l-Scalar-Plain"># Date</span>
 <span class="l-Scalar-Plain">category</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">personal</span>
 <span class="l-Scalar-Plain">tags</span><span class="p-Indicator">:</span> <span class="p-Indicator">[]</span>
-<span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> 
+<span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span>
   <span class="l-Scalar-Plain">feature</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">some-image.jpg</span>
 <span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">true</span>
 <span class="l-Scalar-Plain">mathjax</span><span class="p-Indicator">:</span>
@@ -574,8 +572,7 @@
     <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
     <script src="/assets/js/vendor/modernizr.js"></script>
     <script src="/assets/js/foundation.min.js"></script>
-    <script src="/assets/js/vendor/background-check.js"></script>
-    <script src="/assets/js/vendor/post-header-animations.js"></script>
+    
     <script src="/assets/js/notepad.js"></script>
     <script src="/assets/js/scripts.min.js"></script>
     <script src="/assets/js/vendor/nprogress.js"></script>
