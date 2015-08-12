@@ -417,7 +417,17 @@ html, body, .codetalkpost-container, .codetalkpost-header {
   width: 100%;
   color: white;
 }
+.articles-page {
+  padding: 10px 0px 10px 0px;
+}
 .codetalk-breadcrumb p{
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 5%;
+}
+
+.codetalk-breadcrumb span{
   color: white;
   font-size: 14px;
   font-weight: bold;

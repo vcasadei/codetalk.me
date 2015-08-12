@@ -64,6 +64,17 @@
 <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/apple-touch-icon-144x144-precomposed.png">
 
+<script src="/assets/js/bower_components/simple-jekyll-search/dest/jekyll-search.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(window).ready(function(){
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('results-container'),
+      json: '/search.json',
+    })
+  });
+
+</script>
 </head>
 <body class="home-template" itemscope itemtype="http://schema.org/WebPage">
 <header class="codetalksite-head">
@@ -91,7 +102,7 @@
             <li>
               
                 
-                    
+
                   <a href="/categories">Categories</a>
                 
               
@@ -102,7 +113,7 @@
             <li>
               
                 
-                    
+
                   <a href="/tags">Tags</a>
                 
               
@@ -113,7 +124,7 @@
             <li>
               
                 
-                    
+
                   <a href="/about">About</a>
                 
               
@@ -126,10 +137,19 @@
 </div>
         <div class="clearfix"></div>
     </div>
-    <div class="codetalksite-head-content" >
+    <!-- <div class="codetalksite-head-content" >
         <div class="codetalksite-head-bg"></div>
 
         <h2 class="codetalkblog-description">A blog about code and Technology</h2>
+    </div> -->
+    <div class="codetalk-breadcrumb articles-page">
+      <span>
+        <a href="/">Home</a> <i class="fa fa-angle-right"></i> <a href="/">Articles</a>
+      </span>
+      <span class="search">
+        <input type="text" id="search-input" placeholder="search...">
+        <ul id="results-container" class="results"></ul>
+      </span>
     </div>
 </header>
 

@@ -3,6 +3,17 @@
 
 <head>
 {% include head.html %}
+<script src="{{ site.baseurl }}/assets/js/bower_components/simple-jekyll-search/dest/jekyll-search.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(window).ready(function(){
+    SimpleJekyllSearch({
+      searchInput: document.getElementById('search-input'),
+      resultsContainer: document.getElementById('results-container'),
+      json: '/search.json',
+    })
+  });
+
+</script>
 </head>
 <body class="home-template" itemscope itemtype="http://schema.org/WebPage">
 <header class="codetalksite-head">
@@ -28,7 +39,7 @@
                 {% if link.title == page.title %}
                   <a class="current-page" href="{{ site.url }}{{ link.url }}">{{ link.title }}</a>
                 {% else %}
-                    
+
                   <a href="{{ site.url }}{{ link.url }}">{{ link.title }}</a>
                 {% endif %}
               {% endif %}
@@ -41,10 +52,19 @@
 </div>
         <div class="clearfix"></div>
     </div>
-    <div class="codetalksite-head-content" >
+    <!-- <div class="codetalksite-head-content" >
         <div class="codetalksite-head-bg"></div>
 
         <h2 class="codetalkblog-description">{{ site.description }}</h2>
+    </div> -->
+    <div class="codetalk-breadcrumb articles-page">
+      <span>
+        <a href="{{ site.url }}/">Home</a> <i class="fa fa-angle-right"></i> <a href="{{ site.url }}/">Articles</a>
+      </span>
+      <span class="search">
+        <input type="text" id="search-input" placeholder="search...">
+        <ul id="results-container" class="results"></ul>
+      </span>
     </div>
 </header>
 
