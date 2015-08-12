@@ -53,7 +53,7 @@ main, .codetalkshare-icons, .codetalkdisqus {
 .search {
   position: relative;
   margin: 0 auto;
-  width: 300px;
+  width: 30%;
   float: right;
   margin-right: 4px;
   margin-top: -5px;
@@ -404,6 +404,12 @@ main, .codetalkshare-icons, .codetalkdisqus {
     line-height: 1.1; }
     .codetalkcontent .codetalkindex-post .codetalkpost-header .codetalkpost-title a {
       color: black; }
+
+  @media only screen and (max-width: 40.063em) {
+    .search {
+      width: 50%;
+    }
+  }
   @media only screen and (min-width: 40.063em) {
     .codetalkcontent .codetalkindex-post .codetalkpost-header .codetalkpost-title {
       text-align: left;
