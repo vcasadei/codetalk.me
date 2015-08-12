@@ -227,6 +227,12 @@
                             <span>by <strong><a target="_blank" href="http://casadei.io">{{ site.owner.name }}</a></strong>  &#8212; <strong><i class="fa fa-calendar"></i> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time></strong></span>
 
                             <span>on <a href="{{ site.url }}/categories/index.html#{{ page.category }}">{{this_category}}</a> | {% assign tagsize = page.tags.size %}{% if tagsize != 0 %}{% if tagsize > 1 %}<i class="fa fa-tags"></i> {% else %}<i class="fa fa-tags"></i> {% endif %} {% for tag in page.tags %}<a href="{{ site.url }}/tags/index.html#{{ tag | cgi_encode }}" data-toggle="tooltip" title="Posts tagged with {{ tag }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}&nbsp;&comma;&nbsp;{% endunless %}{% endfor %}{% endif %}</span>
+
+                            {% if site.disqus_shortname and page.comments == true %}
+                              &#8212; <span>
+                              <i class="fa fa-comment"></i> <a href="#disqus_thread">0 Comments</a>
+                            </span>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -257,5 +263,6 @@
     {% include footer.html %}
 </main>
 {% include scripts.html %}
+
 </body>
 </html>
