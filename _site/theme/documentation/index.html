@@ -68,19 +68,19 @@
 <style type="text/css">@media only screen and (min-width:43.75em){.codetalkpost-content div>p:first-child:first-letter{float:left;font-size:4.688rem;line-height:4.375rem;padding-top:.25rem;padding-right:.5rem;padding-left:.188rem;font-family:serif}}</style>
 <script type="text/javascript">
     var line = null;
-    
+
     $(window).ready(function(){
         line = new ProgressBar.Line('#progr', {
             strokeWidth: 1,
             color: "#ffb800",
             trailWidth: 1,
-            duration: 100,
+            duration: 0,
             svgStyle: {
                 display: 'block',
                 height: '100%'
             },
         });
-        
+
         line.set(0.0);
         setStickyDiv();
         var increment = 0.6;
@@ -109,7 +109,7 @@
             if ( incremented ) {
                 var defaultValue = 1.125;
                 var elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p');
-                
+
                 for (i = 0; i < elem.length ; i++ ){
                     elem[i].style.fontSize = defaultValue + "rem";
                 }
@@ -117,7 +117,7 @@
                 elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p:first-child');
                 for (i = 0; i < elem.length ; i++ ){
                     elem[i].style.fontSize = defaultValue + "rem";
-                    
+
                 }
                 elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) ul, .post-template .codetalkpost-content > div:not(.codetalkpost-title) ol');
                 defaultValue = 1.125;
@@ -129,39 +129,39 @@
             calcScroll();
             return false;
         });
-        
+
         $("#contrast").click(function(){
             var elem = $('.post-template .codetalkpost-content');
             elem.toggleClass('high-contrast');
             return false;
         });
-        
+
         $('#bookmark').click(function() {
-            if(window.sidebar){ 
-                    window.sidebar.addPanel(title, url, ""); 
-            } else if(document.all){ 
-                    window.external.AddFavorite(url, title); 
-            } else if(window.opera && window.print){ 
-                    alert('Your browser does not support this feature. You need to manually bookmark this page.'); 
-            } else if(window.chrome){ 
-                    alert('Your browser does not support this feature. You need to manually bookmark this page.'); 
-            } 
+            if(window.sidebar){
+                    window.sidebar.addPanel(title, url, "");
+            } else if(document.all){
+                    window.external.AddFavorite(url, title);
+            } else if(window.opera && window.print){
+                    alert('Your browser does not support this feature. You need to manually bookmark this page.');
+            } else if(window.chrome){
+                    alert('Your browser does not support this feature. You need to manually bookmark this page.');
+            }
            return false;
        });
-       
+
        $('#mail-page').click(function() {
            mail_str = "mailto:?subject=Check out this post: \"Documentation\" by Vitor Casadei!";
             mail_str += "&body=It's from codetalk, ";
-            mail_str += "The link is: " + location.href; 
+            mail_str += "The link is: " + location.href;
             window.open(mail_str, 'Mailer');
            return false;
       });
 
-        
+
         function calcScroll() {
             var scroller_anchor = $(".scroller_anchor").offset().top;
             var contentSize = document.getElementById('codetalk-post-content').offsetHeight;
-            
+
             var scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
             var totalContentSize = scroller_anchor + contentSize;
             var pos = 0;
@@ -170,36 +170,36 @@
             var scrollContentPos = scrollPos - scroller_anchor;
             pos = ((scrollContentPos*100)/totalContentSize)/100;
             if ( pos <= 0 ) {
-                line.animate(0);
+                line.set(0);
             } else if ( pos <= 1 ) {
-                line.animate(pos);
+                line.set(pos);
             } else {
-                line.animate(1);
+                line.set(1);
             }
         }
-        
+
         function setStickyDiv() {
             // Get the position of the location where the scroller starts.
             var scroller_anchor = $(".scroller_anchor").offset().top;
             calcScroll();
-            // Check if the user has scrolled and the current position is after the scroller start location and if its not already fixed at the top 
-            if ($(this).scrollTop() >= scroller_anchor && $('.scroller').css('position') != 'fixed') 
+            // Check if the user has scrolled and the current position is after the scroller start location and if its not already fixed at the top
+            if ($(this).scrollTop() >= scroller_anchor && $('.scroller').css('position') != 'fixed')
             {    // Change the CSS of the scroller to hilight it and fix it at the top of the screen.
                 $('.codetalk-post-control').css({
                     'position': 'fixed',
                     'top': '0px',
                     'margin-top': '0px'
-                    
+
                 });
                 // Changing the height of the scroller anchor to that of scroller so that there is no change in the overall height of the page.
                 $('.scroller_anchor').css('height', '50px');
-            } 
-            else if ($(this).scrollTop() < scroller_anchor && $('.codetalk-post-control').css('position') != 'relative') 
+            }
+            else if ($(this).scrollTop() < scroller_anchor && $('.codetalk-post-control').css('position') != 'relative')
             {    // If the user has scrolled back to the location above the scroller anchor place it back into the content.
-                 
+
                 // Change the height of the scroller anchor to 0 and now we will be adding the scroller back to the content.
                 $('.scroller_anchor').css('height', '0px');
-                 
+
                 // Change the CSS and put it back to its original position.
                 $('.codetalk-post-control').css({
                     'position': 'relative',
@@ -207,12 +207,12 @@
                 });
             }
         }
-        
+
         $(window).scroll(function(e) {
             setStickyDiv();
         });
     });
-    
+
 </script>
 </head>
 <body class="post-template" itemscope itemtype="http://schema.org/WebPage">
@@ -271,7 +271,7 @@
                 
               
               <p>
-                <a href="/">Home</a> <i class="fa fa-angle-right"></i> <a href="/">Articles</a> <i class="fa fa-angle-right"></i> <a href="/categories/index.html#theme"> Theme</a> <i class="fa fa-angle-right"></i> <a href="/theme/documentation">Documentation</a> &nbsp;&nbsp;&nbsp; 
+                <a href="/">Home</a> <i class="fa fa-angle-right"></i> <a href="/">Articles</a> <i class="fa fa-angle-right"></i> <a href="/categories/index.html#theme"> Theme</a> <i class="fa fa-angle-right"></i> <a href="/theme/documentation">Documentation</a> &nbsp;&nbsp;&nbsp;
               </p>
             </div>
             <div class="scroller_anchor"></div>
@@ -286,8 +286,8 @@
                     <div class="small-12 columns">
                         <div class="codetalkpost-meta-simple">
                             <h1>Documentation</h1>
-                            <span>by <strong><a target="_blank" href="http://casadei.io">Vitor Casadei</a></strong>  &#8212; <strong><i class="fa fa-calendar"></i> <time datetime="2014-06-19T00:00:00-03:00">19 Jun 2014</time></strong></span> 
-                                
+                            <span>by <strong><a target="_blank" href="http://casadei.io">Vitor Casadei</a></strong>  &#8212; <strong><i class="fa fa-calendar"></i> <time datetime="2014-06-19T00:00:00-03:00">19 Jun 2014</time></strong></span>
+
                             <span>on <a href="/categories/index.html#theme"> Theme</a> | <i class="fa fa-tags"></i>  <a href="/tags/index.html#how-to" data-toggle="tooltip" title="Posts tagged with how-to" rel="tag">how-to</a></span>
                         </div>
                     </div>
