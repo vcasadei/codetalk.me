@@ -1,5 +1,6 @@
 title:            CodeTalk - A blog about Code and Technology
-description:      "A blog about code and Technology"
+name:             CodeTalk
+description:      A blog about Code and Technology
 logo:             logo.png
 disqus_shortname: codetalkme
 share:            true
@@ -16,7 +17,7 @@ owner:
   email:          vitor@casadei.io
   site:           casadei.io
   # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
-  description:    Something
+  description:    I'm a Software Engineer from São Paulo area in Brazil and I like to create new stuff and to share what I learn and what I do. I also write in another blog - diariodoverde.com - (only in Portuguese) about the relationship between the environment and technology.
   # Social networking links used in footer. Update and remove as you like.
   twitter:        vcasadei
   facebook:       vitor.casadei

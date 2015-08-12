@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <title>Why Jekyll? &vert; CodeTalk - A blog about Code and Technology</title>
-<meta name="description" content="A blog about code and Technology">
+<meta name="description" content="A blog about Code and Technology">
 <meta name="keywords" content="jekyll">
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="/images/logo.png">
 <meta name="twitter:title" content="Why Jekyll?">
-<meta name="twitter:description" content="A blog about code and Technology">
+<meta name="twitter:description" content="A blog about Code and Technology">
 <meta name="twitter:creator" content="@vcasadei">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Why Jekyll?">
-<meta property="og:description" content="A blog about code and Technology">
+<meta property="og:description" content="A blog about Code and Technology">
 <meta property="og:url" content="/web-development/why-jekyll">
 <meta property="og:site_name" content="CodeTalk - A blog about Code and Technology">
 <meta property="og:image" content="/images/">
@@ -136,18 +136,6 @@
             return false;
         });
 
-        $('#bookmark').click(function() {
-            if(window.sidebar){
-                    window.sidebar.addPanel(title, url, "");
-            } else if(document.all){
-                    window.external.AddFavorite(url, title);
-            } else if(window.opera && window.print){
-                    alert('Your browser does not support this feature. You need to manually bookmark this page.');
-            } else if(window.chrome){
-                    alert('Your browser does not support this feature. You need to manually bookmark this page.');
-            }
-           return false;
-       });
 
        $('#mail-page').click(function() {
            mail_str = "mailto:?subject=Check out this post: \"Why Jekyll?\" by Vitor Casadei!";
@@ -280,7 +268,7 @@
             <div class="scroller_anchor"></div>
             <div class="codetalk-post-control">
               <span>
-                <a alt="Make the text bigger!" title="Make the text bigger!" class="font-plus" id="font-plus" href=><i class="fa fa-font"></i><i class="fa fa-plus"></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="Make the text smaller!" title="Make the text smaller!" id="font-minus" class="font-minus" href=><i class="fa fa-font"></i><i class="fa fa-minus"></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="Turn of text lights. Invert Colors" title="Turn of text lights. Invert Colors" class="contrast" id="contrast" href=><i class="fa fa-adjust"></i></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="Bookmark this page!" title="Bookmark this page!" class="bookmark" id="bookmark" href=><i class="fa fa-star-o"></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="E-mail this page!" title="E-mail this page!" id="mail-page" class="e-mail" href=><i class="fa fa-envelope-o"></i></a>
+                <a alt="Make the text bigger!" title="Make the text bigger!" class="font-plus" id="font-plus" href=><i class="fa fa-font"></i><i class="fa fa-plus"></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="Make the text smaller!" title="Make the text smaller!" id="font-minus" class="font-minus" href=><i class="fa fa-font"></i><i class="fa fa-minus"></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="Turn of text lights. Invert Colors" title="Turn of text lights. Invert Colors" class="contrast" id="contrast" href=><i class="fa fa-adjust"></i></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="E-mail this page!" title="E-mail this page!" id="mail-page" class="e-mail" href=><i class="fa fa-envelope-o"></i></a>
             </span>
               <div id="progr"></div>
             </div>
@@ -359,10 +347,10 @@
                             <h1>Vitor Casadei</h1>
                         
                         
-                            <p><a href="mailto:vitor@casadei.io" class="author-website"><i class="fa fa-envelope-o"></i> vitor@casadei.io</a> | <a href="casadei.io" class="author-website"><i class="fa fa-globe"></i> casadei.io</a></p>
+                            <p><a href="mailto:vitor@casadei.io" class="author-website"><i class="fa fa-envelope-o"></i> vitor@casadei.io</a> | <a href="http://casadei.io" class="author-website"><i class="fa fa-globe"></i> casadei.io</a></p>
                         
                         
-                            <p>Something</p>
+                            <p>I'm a Software Engineer from São Paulo area in Brazil and I like to create new stuff and to share what I learn and what I do. I also write in another blog - diariodoverde.com - (only in Portuguese) about the relationship between the environment and technology.</p>
                         
                     </section>
                 </div>
