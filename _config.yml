@@ -1,12 +1,159 @@
+title:            CodeTalk - A blog about Code and Technology
+name:             CodeTalk
+description:      A blog about Code and Technology
+logo:             logo.png
+disqus_shortname: codetalkme
+share:            true
+dropcap:			true
+url:        	  ''
+
+owner:
+  name:           Vitor Casadei
+  avatar:         hmfaysal.jpg
+  email:          vitor@casadei.io
+  site:           casadei.io
+  # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
+  description:    I'm a Software Engineer from São Paulo area in Brazil and I like to create new stuff and to share what I learn and what I do. I also write in another blog - diariodoverde.com - (only in Portuguese) about the relationship between the environment and technology.
+  # Social networking links used in footer. Update and remove as you like.
+  twitter:        vcasadei
+  facebook:       vitor.casadei
+  github:         vcasadei
+  instagram:      vcasadei
+  # For Google Authorship https://plus.google.com/authorship
+  google_plus:    https://plus.google.com/+VitorCasadei
+
+# Analytics and webmaster tools stuff goes here
+google_analytics:   UA-66157305-1
+google_verify:      true
+
+timezone:    America/Sao_Paulo
+future:      true
+highlighter: pygments
+markdown:    kramdown
+# paginate:    5
+# paginate_path: "page:num"
+
 permalink: /:title/
-base: https://www.sylvaindurand.org
+base: https://www.codetalk.me
 
-markdown: redcarpet
-redcarpet:
-  extensions: ['smart', 'superscript']
+kramdown:
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  use_coderay: false
 
-gems:
-  - jekyll-redirect-from
+  coderay:
+    coderay_line_numbers:
+    coderay_line_numbers_start: 1
+    coderay_tab_width: 4
+    coderay_bold_every: 10
+    coderay_css: class
+
+prose:
+  rooturl: '_posts'
+  siteurl: 'http://vcasadei.github.io/codetalk.me'
+  relativeLinks: 'http://vcasadei.github.io/codetalk.me/links.jsonp'
+  media: 'images'
+  metadata:
+    _posts:
+      - name: "published"
+        field:
+          label: "Published"
+          element: "checkbox"
+          value: "true"
+      - name: "layout"
+        field:
+          element: "hidden"
+          label: "Layout"
+          value: "post"
+      - name: "title"
+        field:
+          label: "Title"
+          element: "text"
+          value: "An Awesome Headline!"
+      - name: "description"
+        field:
+          element: "text"
+          label: "Description"
+          placeholder: "Enter Post Description"
+      - name: "headline"
+        field:
+          element: "text"
+          label: "beadline"
+          placeholder: "Enter Post Headline"
+      - name: "modified"
+        field:
+          element: "text"
+          label: "Has this page been modified?"
+          placeholder: "YYYY-MM-DD"
+      - name: "categories"
+        field:
+          element: "multiselect"
+          label: "Add categories"
+          placeholder: "Choose categories"
+          value: personal
+          options:
+            - name: "Personal"
+              value: personal
+            - name: "Engineering"
+              value: engineering
+            - name: "Physics"
+              value: physics
+            - name: "Psychology"
+              value: psychology
+            - name: "Interesting"
+              value: interesting
+            - name: "Web Development"
+              value: web-development
+            - name: "Education"
+              value: education
+            - name: "Technology"
+              value: technology
+            - name: "Back-End"
+              value: backend
+            - name: "Front-End"
+              value: frontend
+            - name: "JavaScript"
+              value: javascript
+            - name: "Python"
+              value: python
+            - name: "Ruby"
+              value: ruby
+            - name: "Environment"
+              value: environment
+            - name: "Coding"
+              value: coding
+          alterable: true
+      - name: "tags"
+        field:
+          element: "text"
+          label: "Tags"
+          placeholder: "Enter tags, separated by spaces"
+      - name: "imagefeature"
+        field:
+          element: "text"
+          label: "Featured Image"
+          placeholder: "somefile.jpg"
+      - name: "mathjax"
+        field:
+          element: "checkbox"
+          label: "MathJax"
+          value: false
+      - name: "featured"
+        field:
+          element: "checkbox"
+          label: "Featured?"
+          value: false
+      - name: "comments"
+        field:
+          element: "checkbox"
+          label: "Comments"
+          value: false
+
+include: [".htaccess"]
+exclude: ["lib", "config.rb", "Gemfile", "Capfile", "Gemfile.lock", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules"]
+
 
 defaults:
   -
@@ -17,12 +164,12 @@ defaults:
       layout: default
   -
     scope:
-      path: _posts/fr
+      path: _posts/pt
     values:
-      lang: fr
+      lang: pt
   -
     scope:
-      path: _posts/fr/pages
+      path: _posts/pt/pages
     values:
       type: pages
       desc: "Site personnel traitant essentiellement de programmation en Python, Ruby, TeX, R..."
@@ -33,13 +180,24 @@ defaults:
       type: pages
       desc: "Personnal website mostly about programming in Python, Ruby, TeX, R..."
 
-  -
-    scope:
-      path: _posts/fr/projects
-    values:
-      type: projects
-  -
-    scope:
-      path: _posts/en/projects
-    values:
-      type: projects
+links:
+  en:
+    home:
+      name: "Articles"
+      url: "/"
+    about:
+      name: "About"
+      url: "/about/"
+    categories:
+      name: "Categories"
+      url: "/categories/"
+  pt:
+    home:
+      name: "Artigos"
+      url: "/artigos/"
+    about:
+      name: "Sobre"
+      url: "/sobre/"
+    categories:
+      name: "Categorias"
+      url: "/categorias/"

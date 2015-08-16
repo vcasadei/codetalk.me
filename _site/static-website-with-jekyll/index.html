@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Static website <br/> with <em>Jekyll</em> &vert; CodeTalk - A blog about Code and Technology</title>
+
+  
+    
+  
+    
+      <link rel="alternate" hreflang="pt" href="/site-statique-avec-jekyll/" />
+    
+  
+<meta name="description" content="A blog about Code and Technology">
+<meta name="keywords" content="">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/images/logo.png">
+<meta name="twitter:title" content="Static website <br/> with <em>Jekyll</em>">
+<meta name="twitter:description" content="A blog about Code and Technology">
+<meta name="twitter:creator" content="@vcasadei">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Static website <br/> with <em>Jekyll</em>">
+<meta property="og:description" content="A blog about Code and Technology">
+<meta property="og:url" content="/static-website-with-jekyll/">
+<meta property="og:site_name" content="CodeTalk - A blog about Code and Technology">
+<meta property="og:image" content="/images/">
+
+<meta name="google-site-verification" content="true">
+
+
+
+<link rel="canonical" href="/static-website-with-jekyll/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="CodeTalk - A blog about Code and Technology Feed">
+<link rel="author" href="https://plus.google.com/+VitorCasadei?rel=author">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,600,300,800,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/assets/css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/vendor/normalize.css">
+    <link rel="stylesheet" href="/assets/css/vendor/nprogress.css">
+    <link rel="stylesheet" href="/assets/css/vendor/foundation.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/post.css">
+    <script src="/assets/js/vendor/jquery-1.11.1.min.js" charset="utf-8"></script>
+    <script src="/assets/js/progressbar.js/dist/progressbar.js" charset="utf-8"></script>
+
+
+
+    <link rel="shortcut icon" href="/icon/favicon.ico">
+    <link rel="shortcut icon" href="/icon/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/icon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/icon/ms-icon-144x144.png">
+
+<style type="text/css">@media only screen and (min-width:43.75em){.codetalkpost-content div>p:first-child:first-letter{float:left;font-size:4.688rem;line-height:4.375rem;padding-top:.25rem;padding-right:.5rem;padding-left:.188rem;font-family:serif}}</style>
+<script type="text/javascript">
+    var line = null;
+
+    $(window).ready(function(){
+        line = new ProgressBar.Line('#progr', {
+            strokeWidth: 1,
+            color: "#ffb800",
+            trailWidth: 1,
+            duration: 0,
+            svgStyle: {
+                display: 'block',
+                height: '100%'
+            },
+        });
+
+        line.set(0.0);
+        setStickyDiv();
+        var increment = 0.6;
+        var incremented = false;
+        $("#font-plus").click(function(){
+                var defaultValue = 1.125;
+                var elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p');
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + increment + "rem";
+                }
+                defaultValue = 1.625;
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p:first-child');
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + increment + "rem";
+                }
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) ul, .post-template .codetalkpost-content > div:not(.codetalkpost-title) ol');
+                defaultValue = 1.125;
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + increment + "rem";
+                }
+                incremented = true;
+                calcScroll();
+            return false;
+        });
+        $("#font-minus").click(function(){
+            if ( incremented ) {
+                var defaultValue = 1.125;
+                var elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p');
+
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + "rem";
+                }
+                defaultValue = 1.625;
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p:first-child');
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + "rem";
+
+                }
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) ul, .post-template .codetalkpost-content > div:not(.codetalkpost-title) ol');
+                defaultValue = 1.125;
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + "rem";
+                }
+                incremented = false;
+            }
+            calcScroll();
+            return false;
+        });
+
+        $("#contrast").click(function(){
+            var elem = $('.post-template .codetalkpost-content');
+            elem.toggleClass('high-contrast');
+            return false;
+        });
+
+
+       $('#mail-page').click(function() {
+           mail_str = "mailto:?subject=Check out this post: \"Static website <br/> with <em>Jekyll</em>\" by Vitor Casadei!";
+            mail_str += "&body=It's from codetalk, ";
+            mail_str += "The link is: " + location.href;
+            window.open(mail_str, 'Mailer');
+           return false;
+      });
+
+
+        function calcScroll() {
+            var scroller_anchor = $(".scroller_anchor").offset().top;
+            var contentSize = document.getElementById('codetalk-post-content').offsetHeight;
+
+            var scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+            var totalContentSize = scroller_anchor + contentSize;
+            var pos = 0;
+
+            // Barra de Scroll
+            var scrollContentPos = scrollPos - scroller_anchor;
+            pos = ((scrollContentPos*100)/totalContentSize)/100;
+            if ( pos <= 0 ) {
+                line.set(0);
+            } else if ( pos <= 1 ) {
+                line.set(pos);
+            } else {
+                line.set(1);
+            }
+        }
+
+        function setStickyDiv() {
+            // Get the position of the location where the scroller starts.
+            var scroller_anchor = $(".scroller_anchor").offset().top;
+            calcScroll();
+            // Check if the user has scrolled and the current position is after the scroller start location and if its not already fixed at the top
+            if ($(this).scrollTop() >= scroller_anchor && $('.scroller').css('position') != 'fixed')
+            {    // Change the CSS of the scroller to hilight it and fix it at the top of the screen.
+                $('.codetalk-post-control').css({
+                    'position': 'fixed',
+                    'top': '0px',
+                    'margin-top': '0px'
+
+                });
+                // Changing the height of the scroller anchor to that of scroller so that there is no change in the overall height of the page.
+                $('.scroller_anchor').css('height', '50px');
+            }
+            else if ($(this).scrollTop() < scroller_anchor && $('.codetalk-post-control').css('position') != 'relative')
+            {    // If the user has scrolled back to the location above the scroller anchor place it back into the content.
+
+                // Change the height of the scroller anchor to 0 and now we will be adding the scroller back to the content.
+                $('.scroller_anchor').css('height', '0px');
+
+                // Change the CSS and put it back to its original position.
+                $('.codetalk-post-control').css({
+                    'position': 'relative',
+                    'margin-top': '-20px'
+                });
+            }
+        }
+
+        $(window).scroll(function(e) {
+            setStickyDiv();
+        });
+    });
+
+</script>
+</head>
+<body class="post-template" itemscope itemtype="http://schema.org/WebPage">
+
+        <main id="codetalkpost-container-simple" class="codetalkpost-container-simple" role="main">
+            <header class="codetalkpost-header-simple">
+                <div class="codetalkpost-menu-header-simple">
+
+                    <a class="codetalkblog-logo" href="/">
+                        <img src="/images/logo.png" alt="Blog Logo" />
+                    </a>
+
+                <div class="codetalkblog-menu">
+    <div class="codetalkmobile-menu show-for-small">
+        <a href="#"><i class="fa fa-bars"></i></a>
+    </div>
+    <ul class="codetalkmenu">
+        <li class="codetalkmobile-close-btn show-for-small text-right">
+            <a href="#"><i class="fa fa-times"></i></a>
+        </li>
+        
+        <li>
+            
+                <a class="current-page" href="/">Articles</a>
+              
+        </li>
+        
+        <li>
+            
+                <a href="/about/">About</a>
+              
+        </li>
+        
+        <li>
+            
+                <a href="/categories/">Categories</a>
+              
+        </li>
+        
+    </ul>
+
+</div>
+            </div>
+            <div class="codetalk-breadcrumb">
+              
+              
+              
+                
+                
+              
+              <p>
+                <a href="/">Home</a> <i class="fa fa-angle-right"></i> <a href="/">Articles</a> <i class="fa fa-angle-right"></i> <a href="/categories/index.html#articles"> Articles</a> <i class="fa fa-angle-right"></i> <a href="/static-website-with-jekyll/">Static website <br/> with <em>Jekyll</em></a> &nbsp;&nbsp;&nbsp;
+              </p>
+            </div>
+            <div class="scroller_anchor"></div>
+            <div class="codetalk-post-control">
+              <span>
+                <a alt="Make the text bigger!" title="Make the text bigger!" class="font-plus" id="font-plus" href=><i class="fa fa-font"></i><i class="fa fa-plus"></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="Make the text smaller!" title="Make the text smaller!" id="font-minus" class="font-minus" href=><i class="fa fa-font"></i><i class="fa fa-minus"></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="Turn of text lights. Invert Colors" title="Turn of text lights. Invert Colors" class="contrast" id="contrast" href=><i class="fa fa-adjust"></i></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="E-mail this page!" title="E-mail this page!" id="mail-page" class="e-mail" href=><i class="fa fa-envelope-o"></i></a>
+            </span>
+              <div id="progr"></div>
+            </div>
+
+
+                <div class="codetalkpost-title-simple row">
+                    <div class="small-12 columns">
+                        <div class="codetalkpost-meta-simple">
+                            <h1>Static website <br/> with <em>Jekyll</em></h1>
+                            <span>by <strong><a target="_blank" href="http://casadei.io">Vitor Casadei</a></strong>  &#8212; <strong><i class="fa fa-calendar"></i> <time datetime="2014-09-01T00:00:00-03:00">01 Sep 2014</time></strong></span>
+
+                            <span>on <a href="/categories/index.html#articles"> Articles</a> | </span>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+        <article id="codetalk-post-content" class="codetalkpost-content post tag-simple">
+            <div>
+                <div id="language-selector">
+                
+                
+                  <a href="/static-website-with-jekyll/" class="en"><img src="/images/en.png"> en</a><br>
+                
+                  <a href="/site-statique-avec-jekyll/" class="pt"><img src="/images/pt.png"> pt</a><br>
+                
+          </div>
+                <p>At the beginning of the Internet, there were <em>static sites</em>: each web page was written “by hand” using a text editor, and then put online. The disadvantages are many, especially the need to duplicate the same changes on some pages[[this is why it was sometimes really hard to maintain a website]], to know HTML and to have his computer available to edit pages. The advent of CSS, which allows to separate actual content from its presentation format and to share it between the pages has not changed this fact[[moreover, the inexistant interoperability between browsers and the poor support of CSS with Microsoft Internet Explorer, have delayed its use]].</p>
+
+<p>It was then that appeared <em>dynamic sites</em>: the different programming languages, ​​running on the server side, such as PHP, helped the rise of <a href="https://en.wikipedia.org/wiki/Content_management_system">CMS</a>, which made possible to create sites and change their content directly from a browser, thus allowing the emergence of sites, blogs, forums accessible to the greatest number. This is for example the case of <a href="http://www.spip.net/"><em>Spip</em></a>, <a href="http://dotclear.org/"><em>Dotclear</em></a> or <a href="https://wordpress.com/"><em>WordPress</em></a>. However, these systems are not without disadvantages:</p>
+
+<ul>
+  <li>they are very sensitive to security gaps, which implies that you need to  monitor carefully updates and logs;</li>
+  <li>they are server ressource intensive, and need specific hostings for large volume of visitors;</li>
+  <li>they badly handle significant increases in workload, so they are very sensitive to DDoS attacks or huge influx of visitors[[it is not uncommon that a website become unavailable because of an important event or a link from a news website]];</li>
+  <li>they tend to be a labyrinthine system, largely overkill for their use and needing databases.</li>
+</ul>
+
+<p>For a couple of years, <em>static websites</em> has come back into favor with the emergence of the <em>static website generators</em>. With simple text files, a program generates a website made entirely from static pages you just have to host. Security problems are thus virtually non-existent, it is possible to host your website on a very modest server or rather the opposite, to get excellent performances and handle huge increases in workload using a <a href="https://en.wikipedia.org/wiki/Content_delivery_network">CDN</a> like <a href="https://www.cloudflare.com/"><em>Cloudflare</em></a> or <a href="http://aws.amazon.com/cloudfront/"><em>Cloudfront</em></a>[[ways to host a static website on <a href="http://aws.amazon.com/s3/"><em>Amazon S3</em></a> and <a href="http://aws.amazon.com/cloudfront/"><em>Cloudfront</em></a> are explained in “<a href="https://www.codetalk.me/static-website-with-cloudfront/">Static website with <em>Cloudfront</em></a>”]].</p>
+
+<p>In addition, it is possible to follow the changes and to work collaboratively thanks to <code>git</code>, to write the articles online and to generate the website on the fly with services like <a href="https://pages.github.com/"><em>GitHub</em></a> and <a href="http://prose.io"><em>Prose</em></a>, or to have a commenting system with <a href="https://disqus.com/"><em>Disqus</em></a>.</p>
+
+<p>This article will show how to install (I) and use (II) the <a href="http://jekyllrb.com/"><em>Jekyll</em></a> website static generator to create and modify a simple website.</p>
+
+<h2 id="first-website-with-jekyll">First website with <em>Jekyll</em></h2>
+
+<p>As a first step, we will see how to install <em>Jekyll</em> on your computer, in order to create your first website and get a local host allowing us to watch it in your browser.</p>
+
+<h3 id="installation-of-jekyll">Installation of <em>Jekyll</em></h3>
+
+<p><em>On Linux</em>, directly install the last stable version of <a href="https://packages.debian.org/stable/ruby"><em>Ruby</em></a>[[it is also possible to install <a href="http://rvm.io/">Ruby version manager</a>]], with its <a href="https://packages.debian.org/stable/ruby-dev">developpement tools</a> and <a href="https://packages.debian.org/stable/rubygems">gem</a>. On <em>Debian</em>, you just have to install the following packages:</p>
+
+<p><code>bash
+sudo apt-get install ruby ruby-dev libgsl-ruby rubygems
+sudo gem install jekyll
+</code></p>
+
+<p><em>On Mac OS X</em>, first install <a href="http://brew.sh/"><em>Homebrew</em></a>[[if you don’t already have them, a window will ask you to install the “Command Line Tools”: you need to install them]] and <a href="http://rvm.io/"><em>Ruby version manager</em></a> with the last stable version of <em>Ruby</em>, then install <em>Jekyll</em>:</p>
+
+<p><code>bash
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+\curl -L https://get.rvm.io | bash -s stable --ruby
+source ~/.rvm/scripts/rvm
+gem install jekyll
+</code></p>
+
+<p><em>On Windows</em>, it is less easy to install <em>Jekyll</em>. However, <a href="http://jekyll-windows.juthilo.com/">Julian Thilo</a> wrote a <a href="http://jekyll-windows.juthilo.com/">very detailed guide</a> about how to do it.</p>
+
+<h3 id="creation-of-a-new-website">Creation of a new website</h3>
+
+<p>The command <code>jekyll new mysite</code> will create the source code of a working website in the <code>mysite</code> folder. In this folder, you can generate the website with <code>jekyll build</code>. The output can then be seen in the <code>_site/</code> folder.</p>
+
+<p>With a single command, it is possible to generate the website and create a local host in order to watch the produced website: use <code>jekyll serve</code> in order to get your website available on <code>http://localhost:4000</code>. You can also automatically regenerate the website each time you change something in the source code[[however, this option doesn’t detect the changes provided in <code>_config.yml</code>]] with <code>jekyll serve -w</code>, which will be by far the most useful command when you’ll start to play with <em>Jekyll</em>.</p>
+
+<h3 id="tree-structure">Tree structure</h3>
+
+<p><em>Jekyll</em> uses several folders:</p>
+
+<ul>
+  <li><em><code>_posts/</code></em> in which the articles are stored[[you can freely organize your files in <code>_post</code>]], with names such as <code>yyyy-mm-dd-post-name.md</code>;</li>
+  <li><em><code>_layouts/</code></em> which contains the layout of the website, that is to say everythin that will surround the articles;</li>
+  <li><em><code>_includes/</code></em>, which contains small page fragments that you wish to include in multiple places on your site[[when you put a file in <code>_includes</code>, it is possible to include it anywhere with the tag <code>{{include filename}}</code>. Il is also possible to provide it <a href="http://jekyllrb.com/docs/templates/#includes">parameters</a>]].</li>
+</ul>
+
+<p>The tree structure may then looks like:</p>
+
+<p><code>r
+mysite/
+        _includes/
+        _layouts/
+                default.html
+                page.html
+                post.html
+        _posts/
+                2014-08-24-static-website-with-jekyll.md
+        medias/
+                style.sass
+                script.js
+                favicon.ico
+        index.html
+        rss.xml
+        _config.yml
+</code></p>
+
+<p>You can add any folder or file in your website folder. If they don’t start with an underscore, <em>Jekyll</em> will generate them on the same location.</p>
+
+<h2 id="using-jekyll">Using <em>Jekyll</em></h2>
+
+<p>Now that the first website is created, we will see how to make it evolve, how to write articles and use metadata.</p>
+
+<p>In order to create an article, juste create in <code>_posts</code> folder a file with a name with the following format: <code>yyyy-mm-dd-post-name.md</code>[[it is also possible to create articles in the folder <code>_drafts</code>, without any date in the file name: thus, it will create drafts invisible in the posts list but available with their URL]]. This file is divided into two sections: the <em>frontmatter</em> where the metadata are stored, and the <em>content</em> of the article.</p>
+
+<h3 id="frontmatter-and-metadata">Frontmatter and metadata</h3>
+
+<p>The frontmatter allows us to declare metadata, which will be called or tested in the website[[see below]]. It is set into the top of the file, under the following format:</p>
+
+<h2 id="r">```r</h2>
+<p>layout: default
+title: My title
+—
+```</p>
+
+<p>Only the <code>layout</code> variable is required: it defines which file in <code>_layouts/</code> <em>Jekyll</em> should use to build the page. It is also usual to define a <code>title</code> variable in order to provide a title to our article[[some variables are reserved by <em>Jekyll</em> with a particuliar behaviour: <code>permalink</code> for exemple specifies the final URL of a file]].</p>
+
+<p>It is also possible to define default variables, declared once for all or parts of the articles. For instance, instead of declare <code>layout: default</code> in each article stored in <code>_posts/</code>, you may declare it once in <code>_config.yml</code>:</p>
+
+<p><code>ruby
+defaults:
+  -
+    scope:
+      path: "_posts"
+    values:
+      layout: "default"
+</code></p>
+
+<h3 id="writing-articles-with-markdown">Writing articles with <em>Markdown</em></h3>
+
+<p>By default, <em>Jekyll</em> use <a href="http://daringfireball.net/projects/markdown/basics"><em>Markdown</em></a>. The purpose of this language is to provide a very simple syntax to replace the most commons HTML tags. For example, <code>*italic*</code> gives “<em>italic</em>” and <code>**bold**</code> gives “<strong>bold</strong>”. It is however still quite possible to use HTML in posts.</p>
+
+<p>From its second version, <em>Jekyll</em> uses <em>Kramdown</em> which add many features like the possibility of giving CSS classes to elements, footnotes, definition lists, tables…</p>
+
+<h3 id="using-metadata">Using metadata</h3>
+
+<p>Any metadata “<code>variable</code>”, declared in the frontmatter or as a default, can be called anywhere in the website, with the tag <code>{{page.variable}}</code>, which returns its value.</p>
+
+<p>It is also possible to do some tests:</p>
+
+<p>```r
+{% if page.variable == ‘value’ %}
+    banana
+{% else %}
+    coconut
+{% endif %}</p>
+
+<p>```</p>
+
+<p>We can also, for example, make loops on each article satisfying some conditions:</p>
+
+<p>```r
+{% assign posts=site.posts | where: “variable”, “value” %}
+{% for post in posts %}
+    {{ post.lang }}
+{% endfor %}</p>
+
+<p>```</p>
+
+<p>Although the <a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">syntax</a> may not be very elegant to use, the large number of <a href="http://jekyllrb.com/docs/variables/">available variables</a>, plus the custom metadata, combined with the <a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">filters et commands</a>, may become highly effective.</p>
+
+<hr />
+
+<h3 id="and-much-more">And much more…</h3>
+
+<p>This article doesn’t claim to be more than a very short introduction to <em>Jekyll</em>. To go further, read the <a href="http://jekyllrb.com/docs/home/"><em>Jekyll</em> excellent documentation</a> first, regularly updated, and the numerous references you will find on the web.</p>
+
+<p>You may also read three other articles written on this website about <em>Jekyll</em>:</p>
+
+<ul>
+  <li><a href="https://www.codetalk.me/making-jekyll-multilingual/">creating a multilingual website</a> as it has been done here;</li>
+  <li><a href="https://www.codetalk.me/website-delivery-with-cloudfront/">website delivery with <em>CloudFront</em></a> in order to get excellent performances and handle huge increases in workload;</li>
+  <li><a href="https://www.codetalk.me/using-github-to-serve-jekyll/">hosting <em>Jekyll</em> on GitHub</a> in order to edit your website online and generate it on the fly.</li>
+</ul>
+
+<p>Lastly, browsing <a href="https://github.com/jekyll/jekyll/wiki/Sites">website using <em>Jekyll</em> source codes</a>[[feel free to browse the <a href="https://github.com/sylvaindurand/sylvaindurand.org">source code of this website</a> to find out how it works]], in order to find inspiration, can only be a good idea.</p>
+
+            </div>
+        </article>
+        <div class="cf"></div>
+        <div class="row text-center">
+            <section class="codetalkpost-share">
+                <a class="twitter-icon" href="https://twitter.com/intent/tweet?text=&quot;Static website <br/> with <em>Jekyll</em>&quot;%20/static-website-with-jekyll/%20via%20&#64;vcasadei"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a class="facebook-icon" href="https://www.facebook.com/sharer/sharer.php?u=/static-website-with-jekyll/"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a class="google-icon" href="https://plus.google.com/share?url=/static-website-with-jekyll/"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </section>
+        </div>
+        <div class="cf"></div>
+
+            <div class="codetalkauthor-info">
+                <div class="row">
+                    <section class="codetalkpost-author small-12 columns">
+                        
+                            <img src="/images/hmfaysal.jpg" class="codetalkpost-author-avatar" alt="Vitor Casadei's photo">
+                        
+                        
+                            <span class="author-label">Author</span>
+                            <h1>Vitor Casadei</h1>
+                        
+                        
+                            <p><a href="mailto:vitor@casadei.io" class="author-website"><i class="fa fa-envelope-o"></i> vitor@casadei.io</a> | <a href="http://casadei.io" class="author-website"><i class="fa fa-globe"></i> casadei.io</a></p>
+                        
+                        
+                            <p>I'm a Software Engineer from São Paulo area in Brazil and I like to create new stuff and to share what I learn and what I do. I also write in another blog - diariodoverde.com - (only in Portuguese) about the relationship between the environment and technology.</p>
+                        
+                    </section>
+                </div>
+            </div>
+
+
+        <div class="cf"></div>
+        
+        <div class="cf"></div>
+
+    <footer class="codetalksite-footer">
+    <div class="copyright">
+         <section>All content copyright <a href="/about">CodeTalk.me</a> &copy; 2015 &bull; All rights reserved.</section>
+         <section>Proudly published with <a class="icon-ghost" href="https://jekyllrb.com/">Jekyll</a></section>
+    </div>
+    <!-- <div class="social-icons">
+
+        
+        <a href="http://twitter.com/vcasadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-twitter fa-stack-1x"></i>
+            </span>
+        </a>
+        
+        
+        <a href="https://plus.google.com/+VitorCasadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-google-plus fa-stack-1x"></i>
+            </span>
+        </a>
+        
+        
+        <a href="http://instagram.com/vcasadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-instagram fa-stack-1x"></i>
+            </span>
+        </a>
+        
+        
+        <a href="http://github.com/vcasadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-github fa-stack-1x"></i>
+            </span>
+        </a>
+        
+        
+        <a href="http://facebook.com/vitor.casadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-facebook fa-stack-1x"></i>
+            </span>
+        </a>
+        
+    </div> -->
+
+    <div class="cf"></div>
+</footer>
+
+</main>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+    <script src="/assets/js/vendor/modernizr.js"></script>
+    <script src="/assets/js/foundation.min.js"></script>
+    
+    <script src="/assets/js/notepad.js"></script>
+    <script src="/assets/js/scripts.min.js"></script>
+    <script src="/assets/js/vendor/nprogress.js"></script>
+
+    <script>
+      $(document).foundation();
+    </script>
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66157305-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<script>NProgress.start();var interval=setInterval(function(){NProgress.inc()},1000);jQuery(window).load(function(){clearInterval(interval);NProgress.done()});jQuery(window).unload(function(){NProgress.start()});</script>
+
+
+</body>
+</html>

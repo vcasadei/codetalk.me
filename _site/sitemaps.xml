@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+    <url>
+      <loc>https://www.codetalk.me/categories/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/categories/" />
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/categorias/" />
+      
+      <lastmod>2015-04-28T00:00:00-03:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+      <loc>https://www.codetalk.me/categorias/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/categories/" />
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/categorias/" />
+      
+      <lastmod>2015-04-28T00:00:00-03:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+      <loc>https://www.codetalk.me/404/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/404/" />
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/404/" />
+      
+      <lastmod>2014-09-13T00:00:00-03:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+      <loc>https://www.codetalk.me/404/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/404/" />
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/404/" />
+      
+      <lastmod>2014-09-13T00:00:00-03:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+      <loc>https://www.codetalk.me/rendre-jekyll-multilingue/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/rendre-jekyll-multilingue/" />
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/making-jekyll-multilingual/" />
+      
+      <lastmod>2014-09-07T00:00:00-03:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+      <loc>https://www.codetalk.me/making-jekyll-multilingual/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/rendre-jekyll-multilingue/" />
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/making-jekyll-multilingual/" />
+      
+      <lastmod>2014-09-07T00:00:00-03:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+      <loc>https://www.codetalk.me/static-website-with-jekyll/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/static-website-with-jekyll/" />
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/site-statique-avec-jekyll/" />
+      
+      <lastmod>2014-09-01T00:00:00-03:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+      <loc>https://www.codetalk.me/site-statique-avec-jekyll/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/static-website-with-jekyll/" />
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/site-statique-avec-jekyll/" />
+      
+      <lastmod>2014-09-01T00:00:00-03:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+      <loc>https://www.codetalk.me/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/" />
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/artigos/" />
+      
+      <lastmod>2014-08-31T00:00:00-03:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+      <loc>https://www.codetalk.me/artigos/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/" />
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/artigos/" />
+      
+      <lastmod>2014-08-31T00:00:00-03:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+      <loc>https://www.codetalk.me/sobre/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/sobre/" />
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/about/" />
+      
+      <lastmod>2014-08-24T00:00:00-03:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+      <loc>https://www.codetalk.me/about/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/sobre/" />
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/about/" />
+      
+      <lastmod>2014-08-24T00:00:00-03:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+      <loc>https://www.codetalk.me/spatial-data-analysis-with-R/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/spatial-data-analysis-with-R/" />
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/cartographie-avec-R/" />
+      
+      <lastmod>2014-02-01T00:00:00-02:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+    <url>
+      <loc>https://www.codetalk.me/cartographie-avec-R/</loc>
+      
+      
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.codetalk.me/spatial-data-analysis-with-R/" />
+      
+        <xhtml:link rel="alternate" hreflang="pt" href="https://www.codetalk.me/cartographie-avec-R/" />
+      
+      <lastmod>2014-02-01T00:00:00-02:00</lastmod>
+      <changefreq>weekly</changefreq>
+    </url>
+  
+</urlset>

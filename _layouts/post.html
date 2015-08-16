@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang }}">
+<head>
+{% include head.html %}
+{% if site.dropcap %}<style type="text/css">@media only screen and (min-width:43.75em){.codetalkpost-content div>p:first-child:first-letter{float:left;font-size:4.688rem;line-height:4.375rem;padding-top:.25rem;padding-right:.5rem;padding-left:.188rem;font-family:serif}}</style>{% endif %}
+<script type="text/javascript">
+    var line = null;
+
+    $(window).ready(function(){
+        line = new ProgressBar.Line('#progr', {
+            strokeWidth: 1,
+            color: "#ffb800",
+            trailWidth: 1,
+            duration: 0,
+            svgStyle: {
+                display: 'block',
+                height: '100%'
+            },
+        });
+
+        line.set(0.0);
+        setStickyDiv();
+        var increment = 0.6;
+        var incremented = false;
+        $("#font-plus").click(function(){
+                var defaultValue = 1.125;
+                var elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p');
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + increment + "rem";
+                }
+                defaultValue = 1.625;
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p:first-child');
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + increment + "rem";
+                }
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) ul, .post-template .codetalkpost-content > div:not(.codetalkpost-title) ol');
+                defaultValue = 1.125;
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + increment + "rem";
+                }
+                incremented = true;
+                calcScroll();
+            return false;
+        });
+        $("#font-minus").click(function(){
+            if ( incremented ) {
+                var defaultValue = 1.125;
+                var elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p');
+
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + "rem";
+                }
+                defaultValue = 1.625;
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p:first-child');
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + "rem";
+
+                }
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) ul, .post-template .codetalkpost-content > div:not(.codetalkpost-title) ol');
+                defaultValue = 1.125;
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + "rem";
+                }
+                incremented = false;
+            }
+            calcScroll();
+            return false;
+        });
+
+        $("#contrast").click(function(){
+            var elem = $('.post-template .codetalkpost-content');
+            elem.toggleClass('high-contrast');
+            return false;
+        });
+
+
+       $('#mail-page').click(function() {
+           mail_str = "mailto:?subject=Check out this post: \"{{ page.title }}\" by {{ site.owner.name }}!";
+            mail_str += "&body=It's from codetalk, ";
+            mail_str += "The link is: " + location.href;
+            window.open(mail_str, 'Mailer');
+           return false;
+      });
+
+
+        function calcScroll() {
+            var scroller_anchor = $(".scroller_anchor").offset().top;
+            var contentSize = document.getElementById('codetalk-post-content').offsetHeight;
+
+            var scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+            var totalContentSize = scroller_anchor + contentSize;
+            var pos = 0;
+
+            // Barra de Scroll
+            var scrollContentPos = scrollPos - scroller_anchor;
+            pos = ((scrollContentPos*100)/totalContentSize)/100;
+            if ( pos <= 0 ) {
+                line.set(0);
+            } else if ( pos <= 1 ) {
+                line.set(pos);
+            } else {
+                line.set(1);
+            }
+        }
+
+        function setStickyDiv() {
+            // Get the position of the location where the scroller starts.
+            var scroller_anchor = $(".scroller_anchor").offset().top;
+            calcScroll();
+            // Check if the user has scrolled and the current position is after the scroller start location and if its not already fixed at the top
+            if ($(this).scrollTop() >= scroller_anchor && $('.scroller').css('position') != 'fixed')
+            {    // Change the CSS of the scroller to hilight it and fix it at the top of the screen.
+                $('.codetalk-post-control').css({
+                    'position': 'fixed',
+                    'top': '0px',
+                    'margin-top': '0px'
+
+                });
+                // Changing the height of the scroller anchor to that of scroller so that there is no change in the overall height of the page.
+                $('.scroller_anchor').css('height', '50px');
+            }
+            else if ($(this).scrollTop() < scroller_anchor && $('.codetalk-post-control').css('position') != 'relative')
+            {    // If the user has scrolled back to the location above the scroller anchor place it back into the content.
+
+                // Change the height of the scroller anchor to 0 and now we will be adding the scroller back to the content.
+                $('.scroller_anchor').css('height', '0px');
+
+                // Change the CSS and put it back to its original position.
+                $('.codetalk-post-control').css({
+                    'position': 'relative',
+                    'margin-top': '-20px'
+                });
+            }
+        }
+
+        $(window).scroll(function(e) {
+            setStickyDiv();
+        });
+    });
+
+</script>
+</head>
+<body class="post-template" itemscope itemtype="http://schema.org/WebPage">
+{% if page.imagefeature %}
+        <main id="codetalkpost-container" class="codetalkpost-container intro-effect-sliced" role="main">
+            <header class="codetalkpost-header">
+                <div class="bg-img"></div>
+
+                <div class="codetalkpost-menu-header">
+{% else %}
+        <main id="codetalkpost-container-simple" class="codetalkpost-container-simple" role="main">
+            <header class="codetalkpost-header-simple">
+                <div class="codetalkpost-menu-header-simple">
+{% endif %}
+                    <a class="codetalkblog-logo" href="{{ site.url }}/">
+                        <img src="{{ site.url }}/images/{{ site.logo }}" alt="Blog Logo" />
+                    </a>
+
+                <div class="codetalkblog-menu">
+    <div class="codetalkmobile-menu show-for-small">
+        <a href="#"><i class="fa fa-bars"></i></a>
+    </div>
+    <ul class="codetalkmenu">
+        <li class="codetalkmobile-close-btn show-for-small text-right">
+            <a href="#"><i class="fa fa-times"></i></a>
+        </li>
+        {% for link in site.links[page.lang] %}
+        <li>
+            {% if link[1].name == 'Articles' or link[1].name == 'Artigos' %}
+                <a class="current-page" href="{{ link[1].url }}">{{ link[1].name }}</a>
+              {% else %}
+                <a href="{{ link[1].url }}">{{ link[1].name }}</a>
+              {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+
+</div>
+            </div>
+            <div class="codetalk-breadcrumb">
+              {% assign words = page.category | split: "-" %}
+              {% assign this_category = "" %}
+              {% for word in words %}
+                {% assign aux = word | capitalize %}
+                {% capture this_category %}{{ this_category }} {{ aux }}{% endcapture %}
+              {% endfor %}
+              <p>
+                <a href="{{ site.url }}/">Home</a> <i class="fa fa-angle-right"></i> <a href="{{ site.url }}/">Articles</a> <i class="fa fa-angle-right"></i> <a href="{{ site.url }}/categories/index.html#{{ page.category }}">{{this_category}}</a> <i class="fa fa-angle-right"></i> <a href="{{ page.url }}">{{ page.title }}</a> &nbsp;&nbsp;&nbsp;
+              </p>
+            </div>
+            <div class="scroller_anchor"></div>
+            <div class="codetalk-post-control">
+              <span>
+                <a alt="Make the text bigger!" title="Make the text bigger!" class="font-plus" id="font-plus" href=><i class="fa fa-font"></i><i class="fa fa-plus"></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="Make the text smaller!" title="Make the text smaller!" id="font-minus" class="font-minus" href=><i class="fa fa-font"></i><i class="fa fa-minus"></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="Turn of text lights. Invert Colors" title="Turn of text lights. Invert Colors" class="contrast" id="contrast" href=><i class="fa fa-adjust"></i></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="E-mail this page!" title="E-mail this page!" id="mail-page" class="e-mail" href=><i class="fa fa-envelope-o"></i></a>
+            </span>
+              <div id="progr"></div>
+            </div>
+
+{% if page.imagefeature %}
+            <div class="codetalkpost-title bg-check">
+                <h1>{{ page.title }}</h1>
+                <p>by <strong>{{ site.owner.name }}</strong> &#8212; {% assign tagsize = page.tags.size %}{% if tagsize != 0 %}on {% for tag in page.tags %}<a href="{{ site.url }}/tags/index.html#{{ tag | cgi_encode }}" data-toggle="tooltip" title="Posts tagged with {{ tag }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}&nbsp;&comma;&nbsp;{% endunless %}{% endfor %}{% endif %} <strong><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time></strong></p>
+            </div>
+            <div class="bg-img"></div>
+        </header>
+        <button class="trigger bg-check" data-info="Read more"><span>Trigger</span></button>
+        <img src="{{ site.url }}/images/{{ page.imagefeature }}" alt="cover-image" />
+{% else %}
+                <div class="codetalkpost-title-simple row">
+                    <div class="small-12 columns">
+                        <div class="codetalkpost-meta-simple">
+                            <h1>{{ page.title }}</h1>
+                            <span>by <strong><a target="_blank" href="http://casadei.io">{{ site.owner.name }}</a></strong>  &#8212; <strong><i class="fa fa-calendar"></i> <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d %b %Y" }}</time></strong></span>
+
+                            <span>on <a href="{{ site.url }}/categories/index.html#{{ page.category }}">{{this_category}}</a> | {% assign tagsize = page.tags.size %}{% if tagsize != 0 %}{% if tagsize > 1 %}<i class="fa fa-tags"></i> {% else %}<i class="fa fa-tags"></i> {% endif %} {% for tag in page.tags %}<a href="{{ site.url }}/tags/index.html#{{ tag | cgi_encode }}" data-toggle="tooltip" title="Posts tagged with {{ tag }}" rel="tag">{{ tag }}</a>{% unless forloop.last %}&nbsp;&comma;&nbsp;{% endunless %}{% endfor %}{% endif %}</span>
+
+                            {% if site.disqus_shortname and page.comments == true %}
+                              &#8212; <span>
+                              <i class="fa fa-comment"></i> <a href="#disqus_thread">0 Comments</a>
+                            </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </header>
+{% endif %}
+        {% if page.imagefeature %}<article id="codetalk-post-content" class="codetalkpost-content post">{% else %}<article id="codetalk-post-content" class="codetalkpost-content post tag-simple">{% endif %}
+            <div>
+                <div id="language-selector">
+                {% assign posts=site.posts | where:"date", page.date | sort: 'path' %}
+                {% for post in posts %}
+                  <a href="{{ post.url }}" class="{{ post.lang }}"><img src="/images/{{ post.lang }}.png"> {{ post.lang }}</a><br>
+                {% endfor %}
+          </div>
+                {{ content }}
+            </div>
+        </article>
+        <div class="cf"></div>
+{% if site.share %}{% include share.html %}{% endif %}
+        <div class="cf"></div>
+
+{% include signoff.html %}
+
+        <div class="cf"></div>
+        {% if site.disqus_shortname and page.comments == true %}
+        <section class="codetalkdisqus row">
+    <div class="small-12 columns">
+        <h1 class="codetalkcomments-header">Comments</h1>
+        <div id="disqus_thread"></div>
+        {% include disqus_comments.html %}
+    </div>
+</section>
+{% endif %}
+        <div class="cf"></div>
+
+    {% include footer.html %}
+</main>
+{% include scripts.html %}
+
+</body>
+</html>

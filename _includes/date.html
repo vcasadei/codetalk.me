@@ -1,7 +1,7 @@
 {% if include.mode != 'month' %}
   {% assign d = include.date | date: "%-d" %}
-  {% if page.lang == 'fr' %}
-    {{ d }}{% if d == "1" %}<sup>er</sup>{% endif %} 
+  {% if page.lang == 'pt' %}
+    {{ d }}{% if d == "1" %}<sup>&#186;</sup> de{% else %} de{% endif %} 
   {% else %}
     {{ d }}<sup>{% case d %}
       {% when '1' or '21' or '31' %}st
@@ -12,21 +12,21 @@
   {% endif %}
 {% endif %}
 
-{% if page.lang == 'fr' %}
+{% if page.lang == 'pt' %}
  {% assign m = include.date | date: "%-m" %}
  {% case m %}
-    {% when '1' %}janvier
-    {% when '2' %}février
-    {% when '3' %}mars
-    {% when '4' %}avril
-    {% when '5' %}mai
-    {% when '6' %}juin
-    {% when '7' %}juillet
-    {% when '8' %}août
-    {% when '9' %}septembre
-    {% when '10' %}octobre
-    {% when '11' %}novembre
-    {% when '12' %}décembre
+    {% when '1' %}Janeiro de
+    {% when '2' %}Fevereiro de
+    {% when '3' %}Março de
+    {% when '4' %}Abril de
+    {% when '5' %}Maio de
+    {% when '6' %}Junho de
+    {% when '7' %}Julho de
+    {% when '8' %}Agosto de
+    {% when '9' %}Setembro de
+    {% when '10' %}Outubro de
+    {% when '11' %}Novembro de
+    {% when '12' %}Dezembro de
   {% endcase %} 
 {% else %}
   {{ include.date | date: "%B"}}

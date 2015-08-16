@@ -5,22 +5,16 @@ en:
   journal:
     title: "journal"
     url:   "/index.html"
-  projects:
-    title: "projects"
-    url:   "/projects/"
   about:
     title: "about"
     url:   "/about/"
-fr:
+pt:
   logo:
     title: "sylvain durand"
     url:   "/journal/"
   journal:
     title: "journal"
     url:   "/journal/"
-  projets:
-    title: "projets"
-    url:   "/projets/"
   about:
     title: "à propos"
     url:   "/a-propos/"

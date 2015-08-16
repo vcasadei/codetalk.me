@@ -1,0 +1,29 @@
+---
+layout: page
+title: Categorias
+tags: [Categories]
+description: "An archive of posts sorted by categories."
+
+---
+
+{% for tag in site.categories %}
+  {% assign words = tag[0] | split: "-" %}
+  {% assign this_category = "" %}
+  {% for word in words %}
+    {% assign aux = word | capitalize %}
+    {% capture this_category %}{{ this_category }} {{ aux }}{% endcapture %}
+  {% endfor %}
+  <h2 id="{{ tag[0] }}">{{ this_category }}</h2>
+  <ul class="post-list">
+    {% assign pages_list = tag[1] | where:"lang", page.lang %}
+    {% for post in pages_list %}
+      {% if post.title != null %}
+      {% if group == null or group == post.group %}
+      <li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}{{ page.lang }}<span class="entry-date"><time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">{% include date.html date=post.date mode=""%}</time></a></li>
+      {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% assign pages_list = nil %}
+    {% assign group = nil %}
+  </ul>
+{% endfor %}

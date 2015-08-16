@@ -1,0 +1,10 @@
+---
+title: Artigos
+layout: home
+name: home
+description: "A coding blog about code and technology by Vitor Casadei, a Computer Scientist from Brazil."
+headline: A Computer Scientist thoughts
+tags: [Vitor, Casadei, technology, coding, blog, computer scientist, codetalk]
+---
+
+{% include list-articles.html %}

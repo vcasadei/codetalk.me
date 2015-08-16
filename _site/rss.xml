@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sylvain Durand</title>
+    <description></description>
+    <link>https://www.codetalk.me</link>
+    <atom:link href="https://www.codetalk.merss.xml" rel="self" type="application/rss+xml" />
+    
+    
+      <item>
+        <title>Making Jekyll multilingual</title>
+        <description>&lt;p&gt;J&lt;em&gt;ekyll&lt;/em&gt; has a very flexible design that allows a great freedom of choice, allowing the user to simply introduce features that are not integrated into its engine. This is particularly the case when one wants to create a multilingual website: while CMS remain very rigid and often require plugins, few filters are sufficient to achieve it with &lt;em&gt;Jekyll&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;This article aims to present a way to create a multilingual site with &lt;em&gt;Jekyll&lt;/em&gt;. &lt;em&gt;Jekyll&lt;/em&gt; have to be installed (the article &lt;a href=&quot;https://www.codetalk.me/static-website-with-jekyll/&quot;&gt;Static website with &lt;em&gt;Jekyll&lt;/em&gt;&lt;/a&gt; explains how to install and use &lt;em&gt;Jekyll&lt;/em&gt; in order to get a simple website) on your computer and you should be able to know how to generate a simple website.&lt;/p&gt;
+
+&lt;h3 id=&quot;goals&quot;&gt;Goals&lt;/h3&gt;
+&lt;p&gt;Our website can be translated in as many languages as wanted. In the following examples, it will have three languages: English, French, and Chinese. Each page may be translated or not in the various languages (regardless of the version, they may be pages which are not translated in each language). On each page, the entire contents — article, date, menus, URL — must be in the same language.&lt;/p&gt;
+
+&lt;p&gt;A language selector, as the one on the top right of this website, will show the actual language and the different translations available (the selector musn’t lead to the translated homepage, but to the translation of the current page).&lt;/p&gt;
+
+&lt;p&gt;Everything will work without any plugin, in order to get a good compatibility with the future versions of &lt;em&gt;Jekyll&lt;/em&gt; and to be able to generate the site in &lt;code&gt;safe&lt;/code&gt; mode and thus to be able to host it on &lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 07 Sep 2014 00:00:00 -0300</pubDate>
+        <link>https://www.codetalk.me/making-jekyll-multilingual/</link>
+        <guid isPermaLink="true">https://www.codetalk.me/making-jekyll-multilingual/</guid>
+      </item>
+    
+      <item>
+        <title>Static website  with Jekyll</title>
+        <description>&lt;p&gt;At the beginning of the Internet, there were &lt;em&gt;static sites&lt;/em&gt;: each web page was written “by hand” using a text editor, and then put online. The disadvantages are many, especially the need to duplicate the same changes on some pages (this is why it was sometimes really hard to maintain a website), to know HTML and to have his computer available to edit pages. The advent of CSS, which allows to separate actual content from its presentation format and to share it between the pages has not changed this fact (moreover, the inexistant interoperability between browsers and the poor support of CSS with Microsoft Internet Explorer, have delayed its use).&lt;/p&gt;
+
+&lt;p&gt;It was then that appeared &lt;em&gt;dynamic sites&lt;/em&gt;: the different programming languages, ​​running on the server side, such as PHP, helped the rise of &lt;a href=&quot;https://en.wikipedia.org/wiki/Content_management_system&quot;&gt;CMS&lt;/a&gt;, which made possible to create sites and change their content directly from a browser, thus allowing the emergence of sites, blogs, forums accessible to the greatest number. This is for example the case of &lt;a href=&quot;http://www.spip.net/&quot;&gt;&lt;em&gt;Spip&lt;/em&gt;&lt;/a&gt;, &lt;a href=&quot;http://dotclear.org/&quot;&gt;&lt;em&gt;Dotclear&lt;/em&gt;&lt;/a&gt; or &lt;a href=&quot;https://wordpress.com/&quot;&gt;&lt;em&gt;WordPress&lt;/em&gt;&lt;/a&gt;. However, these systems are not without disadvantages:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;they are very sensitive to security gaps, which implies that you need to  monitor carefully updates and logs;&lt;/li&gt;
+  &lt;li&gt;they are server ressource intensive, and need specific hostings for large volume of visitors;&lt;/li&gt;
+  &lt;li&gt;they badly handle significant increases in workload, so they are very sensitive to DDoS attacks or huge influx of visitors (it is not uncommon that a website become unavailable because of an important event or a link from a news website);&lt;/li&gt;
+  &lt;li&gt;they tend to be a labyrinthine system, largely overkill for their use and needing databases.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;For a couple of years, &lt;em&gt;static websites&lt;/em&gt; has come back into favor with the emergence of the &lt;em&gt;static website generators&lt;/em&gt;. With simple text files, a program generates a website made entirely from static pages you just have to host. Security problems are thus virtually non-existent, it is possible to host your website on a very modest server or rather the opposite, to get excellent performances and handle huge increases in workload using a &lt;a href=&quot;https://en.wikipedia.org/wiki/Content_delivery_network&quot;&gt;CDN&lt;/a&gt; like &lt;a href=&quot;https://www.cloudflare.com/&quot;&gt;&lt;em&gt;Cloudflare&lt;/em&gt;&lt;/a&gt; or &lt;a href=&quot;http://aws.amazon.com/cloudfront/&quot;&gt;&lt;em&gt;Cloudfront&lt;/em&gt;&lt;/a&gt; (ways to host a static website on &lt;a href=&quot;http://aws.amazon.com/s3/&quot;&gt;&lt;em&gt;Amazon S3&lt;/em&gt;&lt;/a&gt; and &lt;a href=&quot;http://aws.amazon.com/cloudfront/&quot;&gt;&lt;em&gt;Cloudfront&lt;/em&gt;&lt;/a&gt; are explained in “&lt;a href=&quot;https://www.codetalk.me/static-website-with-cloudfront/&quot;&gt;Static website with &lt;em&gt;Cloudfront&lt;/em&gt;&lt;/a&gt;”).&lt;/p&gt;
+
+&lt;p&gt;In addition, it is possible to follow the changes and to work collaboratively thanks to &lt;code&gt;git&lt;/code&gt;, to write the articles online and to generate the website on the fly with services like &lt;a href=&quot;https://pages.github.com/&quot;&gt;&lt;em&gt;GitHub&lt;/em&gt;&lt;/a&gt; and &lt;a href=&quot;http://prose.io&quot;&gt;&lt;em&gt;Prose&lt;/em&gt;&lt;/a&gt;, or to have a commenting system with &lt;a href=&quot;https://disqus.com/&quot;&gt;&lt;em&gt;Disqus&lt;/em&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This article will show how to install (I) and use (II) the &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;&lt;em&gt;Jekyll&lt;/em&gt;&lt;/a&gt; website static generator to create and modify a simple website.&lt;/p&gt;
+
+&lt;h2 id=&quot;first-website-with-jekyll&quot;&gt;First website with &lt;em&gt;Jekyll&lt;/em&gt;&lt;/h2&gt;
+
+&lt;p&gt;As a first step, we will see how to install &lt;em&gt;Jekyll&lt;/em&gt; on your computer, in order to create your first website and get a local host allowing us to watch it in your browser.&lt;/p&gt;
+
+&lt;h3 id=&quot;installation-of-jekyll&quot;&gt;Installation of &lt;em&gt;Jekyll&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;On Linux&lt;/em&gt;, directly install the last stable version of &lt;a href=&quot;https://packages.debian.org/stable/ruby&quot;&gt;&lt;em&gt;Ruby&lt;/em&gt;&lt;/a&gt; (it is also possible to install &lt;a href=&quot;http://rvm.io/&quot;&gt;Ruby version manager&lt;/a&gt;), with its &lt;a href=&quot;https://packages.debian.org/stable/ruby-dev&quot;&gt;developpement tools&lt;/a&gt; and &lt;a href=&quot;https://packages.debian.org/stable/rubygems&quot;&gt;gem&lt;/a&gt;. On &lt;em&gt;Debian&lt;/em&gt;, you just have to install the following packages:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bash
+sudo apt-get install ruby ruby-dev libgsl-ruby rubygems
+sudo gem install jekyll
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;On Mac OS X&lt;/em&gt;, first install &lt;a href=&quot;http://brew.sh/&quot;&gt;&lt;em&gt;Homebrew&lt;/em&gt;&lt;/a&gt; (if you don’t already have them, a window will ask you to install the “Command Line Tools”: you need to install them) and &lt;a href=&quot;http://rvm.io/&quot;&gt;&lt;em&gt;Ruby version manager&lt;/em&gt;&lt;/a&gt; with the last stable version of &lt;em&gt;Ruby&lt;/em&gt;, then install &lt;em&gt;Jekyll&lt;/em&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;bash
+ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+\curl -L https://get.rvm.io | bash -s stable --ruby
+source ~/.rvm/scripts/rvm
+gem install jekyll
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;On Windows&lt;/em&gt;, it is less easy to install &lt;em&gt;Jekyll&lt;/em&gt;. However, &lt;a href=&quot;http://jekyll-windows.juthilo.com/&quot;&gt;Julian Thilo&lt;/a&gt; wrote a &lt;a href=&quot;http://jekyll-windows.juthilo.com/&quot;&gt;very detailed guide&lt;/a&gt; about how to do it.&lt;/p&gt;
+
+&lt;h3 id=&quot;creation-of-a-new-website&quot;&gt;Creation of a new website&lt;/h3&gt;
+
+&lt;p&gt;The command &lt;code&gt;jekyll new mysite&lt;/code&gt; will create the source code of a working website in the &lt;code&gt;mysite&lt;/code&gt; folder. In this folder, you can generate the website with &lt;code&gt;jekyll build&lt;/code&gt;. The output can then be seen in the &lt;code&gt;_site/&lt;/code&gt; folder.&lt;/p&gt;
+
+&lt;p&gt;With a single command, it is possible to generate the website and create a local host in order to watch the produced website: use &lt;code&gt;jekyll serve&lt;/code&gt; in order to get your website available on &lt;code&gt;http://localhost:4000&lt;/code&gt;. You can also automatically regenerate the website each time you change something in the source code (however, this option doesn’t detect the changes provided in &lt;code&gt;_config.yml&lt;/code&gt;) with &lt;code&gt;jekyll serve -w&lt;/code&gt;, which will be by far the most useful command when you’ll start to play with &lt;em&gt;Jekyll&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;tree-structure&quot;&gt;Tree structure&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;Jekyll&lt;/em&gt; uses several folders:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;&lt;code&gt;_posts/&lt;/code&gt;&lt;/em&gt; in which the articles are stored (you can freely organize your files in &lt;code&gt;_post&lt;/code&gt;), with names such as &lt;code&gt;yyyy-mm-dd-post-name.md&lt;/code&gt;;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;&lt;code&gt;_layouts/&lt;/code&gt;&lt;/em&gt; which contains the layout of the website, that is to say everythin that will surround the articles;&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;&lt;code&gt;_includes/&lt;/code&gt;&lt;/em&gt;, which contains small page fragments that you wish to include in multiple places on your site (when you put a file in &lt;code&gt;_includes&lt;/code&gt;, it is possible to include it anywhere with the tag &lt;code&gt;{{include filename}}&lt;/code&gt;. Il is also possible to provide it &lt;a href=&quot;http://jekyllrb.com/docs/templates/#includes&quot;&gt;parameters&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The tree structure may then looks like:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;r
+mysite/
+        _includes/
+        _layouts/
+                default.html
+                page.html
+                post.html
+        _posts/
+                2014-08-24-static-website-with-jekyll.md
+        medias/
+                style.sass
+                script.js
+                favicon.ico
+        index.html
+        rss.xml
+        _config.yml
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You can add any folder or file in your website folder. If they don’t start with an underscore, &lt;em&gt;Jekyll&lt;/em&gt; will generate them on the same location.&lt;/p&gt;
+
+&lt;h2 id=&quot;using-jekyll&quot;&gt;Using &lt;em&gt;Jekyll&lt;/em&gt;&lt;/h2&gt;
+
+&lt;p&gt;Now that the first website is created, we will see how to make it evolve, how to write articles and use metadata.&lt;/p&gt;
+
+&lt;p&gt;In order to create an article, juste create in &lt;code&gt;_posts&lt;/code&gt; folder a file with a name with the following format: &lt;code&gt;yyyy-mm-dd-post-name.md&lt;/code&gt; (it is also possible to create articles in the folder &lt;code&gt;_drafts&lt;/code&gt;, without any date in the file name: thus, it will create drafts invisible in the posts list but available with their URL). This file is divided into two sections: the &lt;em&gt;frontmatter&lt;/em&gt; where the metadata are stored, and the &lt;em&gt;content&lt;/em&gt; of the article.&lt;/p&gt;
+
+&lt;h3 id=&quot;frontmatter-and-metadata&quot;&gt;Frontmatter and metadata&lt;/h3&gt;
+
+&lt;p&gt;The frontmatter allows us to declare metadata, which will be called or tested in the website (see below). It is set into the top of the file, under the following format:&lt;/p&gt;
+
+&lt;h2 id=&quot;r&quot;&gt;```r&lt;/h2&gt;
+&lt;p&gt;layout: default
+title: My title
+—
+```&lt;/p&gt;
+
+&lt;p&gt;Only the &lt;code&gt;layout&lt;/code&gt; variable is required: it defines which file in &lt;code&gt;_layouts/&lt;/code&gt; &lt;em&gt;Jekyll&lt;/em&gt; should use to build the page. It is also usual to define a &lt;code&gt;title&lt;/code&gt; variable in order to provide a title to our article (some variables are reserved by &lt;em&gt;Jekyll&lt;/em&gt; with a particuliar behaviour: &lt;code&gt;permalink&lt;/code&gt; for exemple specifies the final URL of a file).&lt;/p&gt;
+
+&lt;p&gt;It is also possible to define default variables, declared once for all or parts of the articles. For instance, instead of declare &lt;code&gt;layout: default&lt;/code&gt; in each article stored in &lt;code&gt;_posts/&lt;/code&gt;, you may declare it once in &lt;code&gt;_config.yml&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;ruby
+defaults:
+  -
+    scope:
+      path: &quot;_posts&quot;
+    values:
+      layout: &quot;default&quot;
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;writing-articles-with-markdown&quot;&gt;Writing articles with &lt;em&gt;Markdown&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;By default, &lt;em&gt;Jekyll&lt;/em&gt; use &lt;a href=&quot;http://daringfireball.net/projects/markdown/basics&quot;&gt;&lt;em&gt;Markdown&lt;/em&gt;&lt;/a&gt;. The purpose of this language is to provide a very simple syntax to replace the most commons HTML tags. For example, &lt;code&gt;*italic*&lt;/code&gt; gives “&lt;em&gt;italic&lt;/em&gt;” and &lt;code&gt;**bold**&lt;/code&gt; gives “&lt;strong&gt;bold&lt;/strong&gt;”. It is however still quite possible to use HTML in posts.&lt;/p&gt;
+
+&lt;p&gt;From its second version, &lt;em&gt;Jekyll&lt;/em&gt; uses &lt;em&gt;Kramdown&lt;/em&gt; which add many features like the possibility of giving CSS classes to elements, footnotes, definition lists, tables…&lt;/p&gt;
+
+&lt;h3 id=&quot;using-metadata&quot;&gt;Using metadata&lt;/h3&gt;
+
+&lt;p&gt;Any metadata “&lt;code&gt;variable&lt;/code&gt;”, declared in the frontmatter or as a default, can be called anywhere in the website, with the tag &lt;code&gt;{{page.variable}}&lt;/code&gt;, which returns its value.&lt;/p&gt;
+
+&lt;p&gt;It is also possible to do some tests:&lt;/p&gt;
+
+&lt;p&gt;```r
+{% if page.variable == ‘value’ %}
+    banana
+{% else %}
+    coconut
+{% endif %}&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;We can also, for example, make loops on each article satisfying some conditions:&lt;/p&gt;
+
+&lt;p&gt;```r
+{% assign posts=site.posts | where: “variable”, “value” %}
+{% for post in posts %}
+    {{ post.lang }}
+{% endfor %}&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;p&gt;Although the &lt;a href=&quot;https://github.com/Shopify/liquid/wiki/Liquid-for-Designers&quot;&gt;syntax&lt;/a&gt; may not be very elegant to use, the large number of &lt;a href=&quot;http://jekyllrb.com/docs/variables/&quot;&gt;available variables&lt;/a&gt;, plus the custom metadata, combined with the &lt;a href=&quot;https://github.com/Shopify/liquid/wiki/Liquid-for-Designers&quot;&gt;filters et commands&lt;/a&gt;, may become highly effective.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;and-much-more&quot;&gt;And much more…&lt;/h3&gt;
+
+&lt;p&gt;This article doesn’t claim to be more than a very short introduction to &lt;em&gt;Jekyll&lt;/em&gt;. To go further, read the &lt;a href=&quot;http://jekyllrb.com/docs/home/&quot;&gt;&lt;em&gt;Jekyll&lt;/em&gt; excellent documentation&lt;/a&gt; first, regularly updated, and the numerous references you will find on the web.&lt;/p&gt;
+
+&lt;p&gt;You may also read three other articles written on this website about &lt;em&gt;Jekyll&lt;/em&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.codetalk.me/making-jekyll-multilingual/&quot;&gt;creating a multilingual website&lt;/a&gt; as it has been done here;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.codetalk.me/website-delivery-with-cloudfront/&quot;&gt;website delivery with &lt;em&gt;CloudFront&lt;/em&gt;&lt;/a&gt; in order to get excellent performances and handle huge increases in workload;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.codetalk.me/using-github-to-serve-jekyll/&quot;&gt;hosting &lt;em&gt;Jekyll&lt;/em&gt; on GitHub&lt;/a&gt; in order to edit your website online and generate it on the fly.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Lastly, browsing &lt;a href=&quot;https://github.com/jekyll/jekyll/wiki/Sites&quot;&gt;website using &lt;em&gt;Jekyll&lt;/em&gt; source codes&lt;/a&gt; (feel free to browse the &lt;a href=&quot;https://github.com/sylvaindurand/sylvaindurand.org&quot;&gt;source code of this website&lt;/a&gt; to find out how it works), in order to find inspiration, can only be a good idea.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 01 Sep 2014 00:00:00 -0300</pubDate>
+        <link>https://www.codetalk.me/static-website-with-jekyll/</link>
+        <guid isPermaLink="true">https://www.codetalk.me/static-website-with-jekyll/</guid>
+      </item>
+    
+      <item>
+        <title>Spatial Data Analysis  with R</title>
+        <description>&lt;p&gt;If &lt;em&gt;R&lt;/em&gt; language has already become a reference in statistical analysis and data processing, it may be thanks to its hability to represent and visualize data. They can be used in order to visualize spatial data in the form of cartographic representations which, combined with its other features, makes it an excellent geographic information system. This article sets out to show, through the provision of relevant example, how &lt;em&gt;R&lt;/em&gt; can handle spatial data by creating maps.&lt;/p&gt;
+
+&lt;h3 id=&quot;prerequisite&quot;&gt;Prerequisite&lt;/h3&gt;
+
+&lt;p&gt;Once &lt;em&gt;R&lt;/em&gt; is installed on your computer, few libraries will be used: &lt;code&gt;rgdal&lt;/code&gt; allows us to import and project shapefiles, &lt;code&gt;plotrix&lt;/code&gt; creates color scales, and &lt;code&gt;classInt&lt;/code&gt; assigns colors to map data. Once the libraries installed with &lt;code&gt;install.packages&lt;/code&gt;, load them at the beginning of the session:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;r
+library(&#39;rgdal&#39;)      # Reading and projecting shapefiles
+library(&#39;plotrix&#39;)    # Creating color scales
+library(&#39;classInt&#39;)   # Assigning colors to data
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Graphics will be plot using &lt;em&gt;R&lt;/em&gt; base functions. &lt;code&gt;ggplot2&lt;/code&gt; is an alternative, but it seems less relevant here: longer and less legible code, unability to plot holes inside polygones, &lt;code&gt;fortify&lt;/code&gt; and ploting can last much longer.&lt;/p&gt;
+
+&lt;h2 id=&quot;blank-france-map&quot;&gt;Blank France map&lt;/h2&gt;
+
+&lt;h3 id=&quot;reading-shapefiles&quot;&gt;Reading shapefiles&lt;/h3&gt;
+
+&lt;p&gt;The &lt;code&gt;rgdal&lt;/code&gt; library provides &lt;code&gt;readOGR()&lt;/code&gt; in order to read shapefiles. &lt;code&gt;dsn&lt;/code&gt; must contain the path where shapefiles are located, and &lt;code&gt;layer&lt;/code&gt; the shapefile name, without extension. &lt;code&gt;readOGR&lt;/code&gt; reads &lt;code&gt;.shp&lt;/code&gt;, &lt;code&gt;.shx&lt;/code&gt;, &lt;code&gt;.dbf&lt;/code&gt; and &lt;code&gt;.prj&lt;/code&gt; files. Departements of France are given by &lt;a href=&quot;http://professionnels.ign.fr/geofla&quot;&gt;Geofla&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;```r
+# Reading departements
+departements &amp;lt;- readOGR(dsn=”shp/geofla”,  layer=”DEPARTEMENT”)&lt;/p&gt;
+
+&lt;h1 id=&quot;reading-departements-boundaries-in-order-to-plot-france-boundaries&quot;&gt;Reading departements boundaries in order to plot France boundaries&lt;/h1&gt;
+&lt;p&gt;bounderies &amp;lt;- readOGR(dsn=”shp/geofla”,  layer=”LIMITE_DEPARTEMENT”)
+bounderies &amp;lt;- bounderies[bounderies$NATURE %in% c(‘Fronti\xe8re internationale’,’Limite c\xf4ti\xe8re’),]
+```&lt;/p&gt;
+
+&lt;p&gt;In order to show neighbouring countries, we will use data provided by &lt;a href=&quot;http://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/&quot;&gt;Natural Earth&lt;/a&gt;. We will select Europe countries only:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;r
+# Reading country and selecting Europe
+europe &amp;lt;- readOGR(dsn=&quot;shp/ne/cultural&quot;, layer=&quot;ne_10m_admin_0_countries&quot;) 
+ &amp;lt;- europe[europe$REGION_UN==&quot;Europe&quot;,]
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;projection-and-plot&quot;&gt;Projection and plot&lt;/h3&gt;
+
+&lt;p&gt;The map will use the &lt;a href=&quot;http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000387816&amp;amp;fastPos=1&amp;amp;fastReqId=2039166907&amp;amp;categorieLien=cid&amp;amp;oldAction=rechTexte&quot;&gt;French official projection&lt;/a&gt;, already declared in the Geofla &lt;code&gt;.prj&lt;/code&gt; files. &lt;code&gt;spTransform&lt;/code&gt; will be used for the European coutries.&lt;/p&gt;
+
+&lt;p&gt;Then, we will first plot French boundaries, in order to center the map on France. Borders colors are defined in &lt;code&gt;border&lt;/code&gt;, their tickness in &lt;code&gt;lwd&lt;/code&gt; and the filling color in &lt;code&gt;col&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;```r&lt;/p&gt;
+
+&lt;h1 id=&quot;projection&quot;&gt;Projection&lt;/h1&gt;
+&lt;p&gt;europe &amp;lt;- spTransform(europe, CRS(“+init=epsg:2154”))&lt;/p&gt;
+
+&lt;h1 id=&quot;plot&quot;&gt;Plot&lt;/h1&gt;
+
+&lt;p&gt;pdf(‘france.pdf’,width=6,height=4.7)
+par(mar=c(0,0,0,0))&lt;/p&gt;
+
+&lt;p&gt;plot(bounderies,  col=”#FFFFFF”)
+plot(europe,      col=”#E6E6E6”, border=”#AAAAAA”,lwd=1, add=TRUE)
+plot(bounderies,  col=”#D8D6D4”, lwd=6, add=TRUE)
+plot(departements,col=”#FFFFFF”, border=”#CCCCCC”,lwd=.7, add=TRUE)
+plot(bounderies,  col=”#666666”, lwd=1, add=TRUE)&lt;/p&gt;
+
+&lt;p&gt;dev.off() 
+```&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.codetalk.me/medias/carto/france.pdf&quot;&gt;&lt;img src=&quot;https://www.codetalk.me/medias/carto/france.jpg&quot; alt=&quot;France blank map&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;visualizing-a-data-population-density&quot;&gt;Visualizing a data: population density&lt;/h2&gt;
+
+&lt;h3 id=&quot;reading-data&quot;&gt;Reading data&lt;/h3&gt;
+&lt;p&gt;The very large number of &lt;em&gt;communes&lt;/em&gt; (the smallest administrative level in France) gives us excellent spatial data. Geofla provides us their bounderies, population and area. So we will plot population density:&lt;/p&gt;
+
+&lt;p&gt;```r
+# Reading shapefile
+communes     &amp;lt;- readOGR(dsn=”shp/geofla”, layer=”COMMUNE”)&lt;/p&gt;
+
+&lt;h1 id=&quot;calculate-density&quot;&gt;Calculate density&lt;/h1&gt;
+&lt;p&gt;communes$DENSITY &amp;lt;- communes$POPULATION/communes$SUPERFICIE*100000
+```&lt;/p&gt;
+
+&lt;h3 id=&quot;color-scale&quot;&gt;Color scale&lt;/h3&gt;
+&lt;p&gt;In order to create a color scale, we will assign shades of blue to each percentile. &lt;code&gt;classIntervals&lt;/code&gt; calculates percentiles, &lt;code&gt;smoothColors&lt;/code&gt; create the blue scale, and &lt;code&gt;findColours&lt;/code&gt; assigns blues depending on each commune depending on their population density. Then, we create a legend, with only five colors.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;r
+# Color scale
+col &amp;lt;- findColours(classIntervals(
+            communes$DENSITY, 100, style=&quot;quantile&quot;),
+            smoothColors(&quot;#0C3269&quot;,98,&quot;white&quot;))
+# Legend
+leg &amp;lt;- findColours(classIntervals(
+            round(communes$DENSITY), 5, style=&quot;quantile&quot;),
+            smoothColors(&quot;#0C3269&quot;,3,&quot;white&quot;),
+            under=&quot;less than&quot;, over=&quot;more than&quot;, between=&quot;–&quot;, 
+            cutlabels=FALSE)
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;plot-1&quot;&gt;Plot&lt;/h3&gt;
+&lt;p&gt;We can now plot the map. In order to use an embedded font in the PDF, we will use &lt;code&gt;cairo_pdf()&lt;/code&gt; instead of &lt;code&gt;pdf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;p&gt;```r
+# Exporting in PDF
+cairo_pdf(‘densite.pdf’,width=6,height=4.7)
+par(mar=c(0,0,0,0),family=”Myriad Pro”,ps=8)&lt;/p&gt;
+
+&lt;h1 id=&quot;ploting-the-map&quot;&gt;Ploting the map&lt;/h1&gt;
+&lt;p&gt;plot(bounderies, col=”#FFFFFF”)
+plot(europe,     col=”#E6E6E6”, border=”#AAAAAA”,lwd=1, add=TRUE)
+plot(bounderies, col=”#D8D6D4”, lwd=6, add=TRUE)
+plot(communes,   col=col, border=col, lwd=.1, add=TRUE)
+plot(bounderies, col=”#666666”, lwd=1, add=TRUE)&lt;/p&gt;
+
+&lt;h1 id=&quot;ploting-the-legend&quot;&gt;Ploting the legend&lt;/h1&gt;
+&lt;p&gt;legend(-10000,6387500,fill=attr(leg, “palette”),
+        legend=names(attr(leg,”table”)),
+        title = “Density (p/km²):”)&lt;/p&gt;
+
+&lt;p&gt;dev.off() 
+```&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.codetalk.me/medias/carto/density.pdf&quot;&gt;&lt;img src=&quot;https://www.codetalk.me/medias/carto/density.jpg&quot; alt=&quot;Population density in France&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;visualizing-an-external-data--incomes&quot;&gt;Visualizing an external data : incomes&lt;/h2&gt;
+&lt;p&gt;The main value is to plot data provided by external files. We will plot the median taxable income per consumption unit (&lt;a href=&quot;http://www.insee.fr/fr/themes/detail.asp?reg_id=99&amp;amp;ref_id=base-cc-rev-fisc-loc-menage&quot;&gt;provided by INSEE&lt;/a&gt;). &lt;a href=&quot;https://www.codetalk.me/medias/carto/revenus.csv&quot;&gt;We convert it in CSV&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;reading-and-supplementing-data&quot;&gt;Reading and supplementing data&lt;/h3&gt;
+
+&lt;p&gt;Unfortunately, data is missing for more than 5 000 communes, due to tax secrecy. We can “cheat” in order to improve the global render by assigning to those communes the canton (a larger administrative level) median income, given in the &lt;a href=&quot;http://www.insee.fr/fr/themes/detail.asp?reg_id=99&amp;amp;ref_id=base-cc-rev-fisc-loc-menage&quot;&gt;same file&lt;/a&gt;, &lt;a href=&quot;https://www.codetalk.me/medias/carto/cantons.csv&quot;&gt;converted in CSV&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;```r
+# Loading communes data
+incomes &amp;lt;- read.csv(‘csv/revenus.csv’)
+communes &amp;lt;- merge(communes, incomes, by.x=”INSEE_COM”, by.y=”COMMUNE”)&lt;/p&gt;
+
+&lt;h1 id=&quot;loading-cantons-data&quot;&gt;Loading cantons data&lt;/h1&gt;
+&lt;p&gt;cantons  &amp;lt;- read.csv(‘csv/cantons.csv’)&lt;/p&gt;
+
+&lt;h1 id=&quot;merging-data&quot;&gt;Merging data&lt;/h1&gt;
+&lt;p&gt;communes &amp;lt;- merge(communes, cantons, by=”CANTON”, all.x=TRUE)&lt;/p&gt;
+
+&lt;h1 id=&quot;assigning-canton-median-income-to-communes-with-missing-data&quot;&gt;Assigning canton median income to communes with missing data&lt;/h1&gt;
+&lt;p&gt;communes$REVENUS[is.na(communes$REVENUS)] &amp;lt;- communes$REVENUC[is.na(communes$REVENUS)]
+```&lt;/p&gt;
+
+&lt;h3 id=&quot;color-scale-1&quot;&gt;Color scale&lt;/h3&gt;
+&lt;p&gt;We generate color scale and legend:&lt;/p&gt;
+
+&lt;p&gt;```r
+col &amp;lt;- findColours(classIntervals(
+            communes$REVENUS, 100, style=”quantile”),
+            smoothColors(“#FFFFD7”,98,”#F3674C”))&lt;/p&gt;
+
+&lt;p&gt;leg &amp;lt;- findColours(classIntervals(
+            round(communes$REVENUS,0), 4, style=”quantile”),
+            smoothColors(“#FFFFD7”,2,”#F3674C”),
+            under=”moins de”, over=”plus de”, between=”–”, 
+            cutlabels=FALSE)
+```&lt;/p&gt;
+
+&lt;h3 id=&quot;plot-2&quot;&gt;Plot&lt;/h3&gt;
+&lt;p&gt;And we plot:&lt;/p&gt;
+
+&lt;p&gt;```r
+cairo_pdf(‘incomes.pdf’,width=6,height=4.7)
+par(mar=c(0,0,0,0),family=”Myriad Pro”,ps=8)&lt;/p&gt;
+
+&lt;p&gt;plot(boundaries, col=”#FFFFFF”)
+plot(europe,     col=”#F5F5F5”, border=”#AAAAAA”,lwd=1, add=TRUE)
+plot(boundaries, col=”#D8D6D4”, lwd=6, add=TRUE)
+plot(communes,   col=col, border=col, lwd=.1, add=TRUE)
+plot(boundaries, col=”#666666”, lwd=1, add=TRUE)&lt;/p&gt;
+
+&lt;p&gt;legend(-10000,6337500,fill=attr(leg, “palette”),
+    legend=gsub(“\.”, “,”, names(attr(leg,”table”))),
+    title = “Median income:”)&lt;/p&gt;
+
+&lt;p&gt;dev.off() 
+```&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.codetalk.me/medias/carto/incomes.pdf&quot;&gt;&lt;img src=&quot;https://www.codetalk.me/medias/carto/incomes.jpg&quot; alt=&quot;Median taxable income per consumption unit in France in 2010&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;visualizing-map-data-the-road-network&quot;&gt;Visualizing map data: the road network&lt;/h2&gt;
+
+&lt;p&gt;We can also add map data: cities, urban areas, rivers, forests… We will here plot the French road network, thanks to &lt;a href=&quot;http://professionnels.ign.fr/route500&quot;&gt;Route 500&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;```r
+roads &amp;lt;- readOGR(dsn=”shp/geofla”,  layer=”TRONCON_ROUTE”)
+local     &amp;lt;- roads[roads$VOCATION==”Liaison locale”,] 
+principal &amp;lt;- roads[roads$VOCATION==”Liaison principale”,] 
+regional  &amp;lt;- roads[roads$VOCATION==”Liaison r\xe9gionale”,] 
+highway &amp;lt;- roads[roads$VOCATION==”Type autoroutier”,]&lt;/p&gt;
+
+&lt;p&gt;cairo_pdf(‘roads.pdf’,width=6,height=4.7)
+par(mar=c(0,0,0,0),family=”Myriad Pro”,ps=8)&lt;/p&gt;
+
+&lt;p&gt;plot(boundaries,  col=”#FFFFFF”)
+plot(europe,      col=”#F5F5F5”, border=”#AAAAAA”,lwd=1, add=TRUE)
+plot(boundaries,  col=”#D8D6D4”, lwd=6, add=TRUE)
+plot(departements,col=”#FFFFFF”, border=”#FFFFFF”,lwd=.7, add=TRUE)
+plot(local,       col=”#CBCBCB”, lwd=.1, add=TRUE)
+plot(principal,   col=”#CCCCCC”, lwd=.3, add=TRUE)
+plot(regional,    col=”#BBBBBB”, lwd=.5, add=TRUE)
+plot(highway,     col=”#AAAAAA”, lwd=.7, add=TRUE)
+plot(boundaries,  col=”#666666”, lwd=1, add=TRUE)&lt;/p&gt;
+
+&lt;p&gt;dev.off() 
+```&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.codetalk.me/medias/carto/routes.pdf&quot;&gt;&lt;img src=&quot;https://www.codetalk.me/medias/carto/routes.jpg&quot; alt=&quot;French roads network&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;blank-world-map&quot;&gt;Blank world map&lt;/h2&gt;
+
+&lt;h3 id=&quot;reading-shapefiles-1&quot;&gt;Reading shapefiles&lt;/h3&gt;
+
+&lt;p&gt;We will load the following &lt;a href=&quot;http://www.naturalearthdata.com/downloads&quot;&gt;Natural Earth&lt;/a&gt; shapefiles:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;r
+# Loading Shapefiles
+countries   &amp;lt;- readOGR(dsn=&quot;shp/ne/cultural&quot;,layer=&quot;ne_110m_admin_0_countries&quot;)
+graticules  &amp;lt;- readOGR(dsn=&quot;shp/ne/physical&quot;,layer=&quot;ne_110m_graticules_10&quot;) 
+bbox        &amp;lt;- readOGR(dsn=&quot;shp/ne/physical&quot;,layer=&quot;ne_110m_wgs84_bounding_box&quot;)
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;projection-and-plot-1&quot;&gt;Projection and plot&lt;/h3&gt;
+
+&lt;p&gt;We will use the &lt;em&gt;&lt;a href=&quot;http://fr.wikipedia.org/wiki/Projection_de_Winkel-Tripel&quot;&gt;Winkel Tripel&lt;/a&gt;&lt;/em&gt; projection:&lt;/p&gt;
+
+&lt;p&gt;```r
+# Winkel Tripel projection
+countries   &amp;lt;- spTransform(countries,CRS(“+proj=wintri”))
+bbox        &amp;lt;- spTransform(bbox,  CRS(“+proj=wintri”))
+graticules  &amp;lt;- spTransform(graticules, CRS(“+proj=wintri”))&lt;/p&gt;
+
+&lt;h1 id=&quot;ploting-world-map&quot;&gt;Ploting world map&lt;/h1&gt;
+&lt;p&gt;pdf(‘world.pdf’,width=10,height=6) # Exportation en PDF
+par(mar=c(0,0,0,0))                # Marges nulles&lt;/p&gt;
+
+&lt;p&gt;plot(bbox, col=”white”, border=”grey90”,lwd=1)
+plot(countries, col=”#E6E6E6”, border=”#AAAAAA”,lwd=1, add=TRUE)
+plot(graticules, col=”#CCCCCC33”, lwd=1, add=TRUE)&lt;/p&gt;
+
+&lt;p&gt;dev.off()                          # Saving file
+```&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.codetalk.me/medias/carto/monde.pdf&quot;&gt;&lt;img src=&quot;https://www.codetalk.me/medias/carto/monde.jpg&quot; alt=&quot;Carte du monde projetée en Winkel Tripel&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;visualizing-data-human-development-index&quot;&gt;Visualizing data: Human Development Index&lt;/h2&gt;
+
+&lt;p&gt;Most frequent usage consists of visualizing data with a color scale. Let’s plot the HDI, provided by the United Nations Develment Programme in a &lt;a href=&quot;https://www.codetalk.me/medias/carto/hdi.csv&quot;&gt;CSV file&lt;/a&gt;. The procedure is as described above:&lt;/p&gt;
+
+&lt;p&gt;```r
+# Loading data and merging dataframes
+hdi  &amp;lt;- read.csv(‘csv/hdi.csv’)
+countries &amp;lt;- merge(countries, hdi, by.x=”iso_a3”, by.y=”Abbreviation”)
+# Converting HDI in numeric
+countries$hdi &amp;lt;- as.numeric(levels(countries$X2012.HDI.Value))[countries$X2012.HDI.Value]&lt;/p&gt;
+
+&lt;h1 id=&quot;generating-color-scale-and-assigning-colors&quot;&gt;Generating color scale and assigning colors&lt;/h1&gt;
+&lt;p&gt;col &amp;lt;- findColours(classIntervals(countries$hdi, 100, style=”pretty”),
+                       smoothColors(“#ffffe5”,98,”#00441b”))&lt;/p&gt;
+
+&lt;h1 id=&quot;assigning-grey-to-missing-data&quot;&gt;Assigning grey to missing data&lt;/h1&gt;
+&lt;p&gt;col[is.na(countries$hdi)] &amp;lt;- “#DDDDDD”&lt;/p&gt;
+
+&lt;h1 id=&quot;generating-legend&quot;&gt;Generating legend&lt;/h1&gt;
+&lt;p&gt;leg &amp;lt;- findColours(classIntervals(round(countries$hdi,3), 7, style=”pretty”),
+                       smoothColors(“#ffffe5”,5,”#00441b”),
+                       under=”less than”, over=”more than”, between=”–”, cutlabels=FALSE)&lt;/p&gt;
+
+&lt;h1 id=&quot;ploting&quot;&gt;Ploting&lt;/h1&gt;
+&lt;p&gt;cairo_pdf(‘hdi.pdf’,width=10,height=6)
+par(mar=c(0,0,0,0),family=”Myriad Pro”,ps=8)&lt;/p&gt;
+
+&lt;p&gt;plot(bbox, col=”white”, border=”grey90”,lwd=1)
+plot(countries,  col=col, border=col,lwd=.8, add=TRUE)
+plot(graticules,col=”#00000009”,lwd=1, add=TRUE)&lt;/p&gt;
+
+&lt;p&gt;legend(-15000000,-3000000,fill=attr(leg, “palette”),
+    legend= names(attr(leg,”table”)),
+    title = “HDI in 2012 :”)
+dev.off() 
+```&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.codetalk.me/medias/carto/hdi.pdf&quot;&gt;&lt;img src=&quot;https://www.codetalk.me/medias/carto/hdi.jpg&quot; alt=&quot;Human Development Index (HDI) in 2012&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;circles-visualization-most-populated-cities&quot;&gt;Circles visualization: most populated cities&lt;/h2&gt;
+
+&lt;h3 id=&quot;reading-data-1&quot;&gt;Reading data&lt;/h3&gt;
+&lt;p&gt;An other kind of visualization is given by circles. Population of most populated cities is provided by &lt;a href=&quot;http://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-populated-places/&quot;&gt;Natural Earth&lt;/a&gt;:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;r
+# Loading shapefile
+cities &amp;lt;- readOGR(dsn=&quot;shp/ne/cultural&quot;,layer=&quot;ne_110m_populated_places&quot;) 
+cities &amp;lt;- spTransform(cities,  CRS(&quot;+proj=wintri&quot;)) 
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;circle-size&quot;&gt;Circle size&lt;/h3&gt;
+
+&lt;p&gt;The data shall be proportionate to the circles areas, not the radius; so the radius is the square root of the population:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;r
+# Calculating circles radius
+cities$radius &amp;lt;- sqrt(cities$POP2015)
+cities$radius &amp;lt;- cities$radius/max(cities$radius)*3
+&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;plot-3&quot;&gt;Plot&lt;/h3&gt;
+
+&lt;p&gt;We plot the map:&lt;/p&gt;
+
+&lt;p&gt;```r
+pdf(‘cities.pdf’,width=10,height=6)
+par(mar=c(0,0,0,0))&lt;/p&gt;
+
+&lt;p&gt;plot(bbox, col=”white”,    border=”grey90”,lwd=1)
+plot(countries,  col=”#E6E6E6”,  border=”#AAAAAA”,lwd=1, add=TRUE)
+points(cities,col=”#8D111766”,bg=”#8D111766”,lwd=1, pch=21,cex=cities$radius)
+plot(graticules,col=”#CCCCCC33”,lwd=1, add=TRUE)&lt;/p&gt;
+
+&lt;p&gt;dev.off() 
+```&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.codetalk.me/medias/carto/villes.pdf&quot;&gt;&lt;img src=&quot;https://www.codetalk.me/medias/carto/villes.jpg&quot; alt=&quot;Most populated cities in the world&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;visualizing-map-data-urban-areas&quot;&gt;Visualizing map data: urban areas&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-urban-area/&quot;&gt;Natural Earth&lt;/a&gt; provides urban areas shapefiles, derived from satellite data. Let’us map them with night lights colors[^urban]:&lt;/p&gt;
+
+&lt;p&gt;```r
+areas  &amp;lt;- readOGR(dsn=”shp/ne/cultural”,layer=”ne_10m_urban_areas”)
+areas &amp;lt;- spTransform(areas, CRS(“+proj=wintri”))&lt;/p&gt;
+
+&lt;p&gt;pdf(‘areas.pdf’,width=10,height=6)
+par(mar=c(0,0,0,0))
+plot(bbox, col=”#000000”,    border=”#000000”,lwd=1)
+plot(countries,  col=”#000000”,  border=”#000000”,lwd=1, add=TRUE)
+plot(areas,  col=”#FFFFFF”,  border=”#FFFFFF66”,lwd=1.5, add=TRUE)&lt;/p&gt;
+
+&lt;p&gt;dev.off() 
+```&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.codetalk.me/medias/carto/urbain.pdf&quot;&gt;&lt;img src=&quot;https://www.codetalk.me/medias/carto/urbain.jpg&quot; alt=&quot;World map (Winkel Tripel projection)&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Sat, 01 Feb 2014 00:00:00 -0200</pubDate>
+        <link>https://www.codetalk.me/spatial-data-analysis-with-R/</link>
+        <guid isPermaLink="true">https://www.codetalk.me/spatial-data-analysis-with-R/</guid>
+      </item>
+    
+  </channel>
+</rss>

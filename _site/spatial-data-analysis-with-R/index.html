@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Spatial Data Analysis <br/> with <em>R</em> &vert; CodeTalk - A blog about Code and Technology</title>
+
+  
+    
+  
+    
+      <link rel="alternate" hreflang="pt" href="/cartographie-avec-R/" />
+    
+  
+<meta name="description" content="A blog about Code and Technology">
+<meta name="keywords" content="">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/images/logo.png">
+<meta name="twitter:title" content="Spatial Data Analysis <br/> with <em>R</em>">
+<meta name="twitter:description" content="A blog about Code and Technology">
+<meta name="twitter:creator" content="@vcasadei">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spatial Data Analysis <br/> with <em>R</em>">
+<meta property="og:description" content="A blog about Code and Technology">
+<meta property="og:url" content="/spatial-data-analysis-with-R/">
+<meta property="og:site_name" content="CodeTalk - A blog about Code and Technology">
+<meta property="og:image" content="/images/">
+
+<meta name="google-site-verification" content="true">
+
+
+
+<link rel="canonical" href="/spatial-data-analysis-with-R/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="CodeTalk - A blog about Code and Technology Feed">
+<link rel="author" href="https://plus.google.com/+VitorCasadei?rel=author">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,600,300,800,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/assets/css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/vendor/normalize.css">
+    <link rel="stylesheet" href="/assets/css/vendor/nprogress.css">
+    <link rel="stylesheet" href="/assets/css/vendor/foundation.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/post.css">
+    <script src="/assets/js/vendor/jquery-1.11.1.min.js" charset="utf-8"></script>
+    <script src="/assets/js/progressbar.js/dist/progressbar.js" charset="utf-8"></script>
+
+
+
+    <link rel="shortcut icon" href="/icon/favicon.ico">
+    <link rel="shortcut icon" href="/icon/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/icon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/icon/ms-icon-144x144.png">
+
+<style type="text/css">@media only screen and (min-width:43.75em){.codetalkpost-content div>p:first-child:first-letter{float:left;font-size:4.688rem;line-height:4.375rem;padding-top:.25rem;padding-right:.5rem;padding-left:.188rem;font-family:serif}}</style>
+<script type="text/javascript">
+    var line = null;
+
+    $(window).ready(function(){
+        line = new ProgressBar.Line('#progr', {
+            strokeWidth: 1,
+            color: "#ffb800",
+            trailWidth: 1,
+            duration: 0,
+            svgStyle: {
+                display: 'block',
+                height: '100%'
+            },
+        });
+
+        line.set(0.0);
+        setStickyDiv();
+        var increment = 0.6;
+        var incremented = false;
+        $("#font-plus").click(function(){
+                var defaultValue = 1.125;
+                var elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p');
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + increment + "rem";
+                }
+                defaultValue = 1.625;
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p:first-child');
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + increment + "rem";
+                }
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) ul, .post-template .codetalkpost-content > div:not(.codetalkpost-title) ol');
+                defaultValue = 1.125;
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + increment + "rem";
+                }
+                incremented = true;
+                calcScroll();
+            return false;
+        });
+        $("#font-minus").click(function(){
+            if ( incremented ) {
+                var defaultValue = 1.125;
+                var elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p');
+
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + "rem";
+                }
+                defaultValue = 1.625;
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p:first-child');
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + "rem";
+
+                }
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) ul, .post-template .codetalkpost-content > div:not(.codetalkpost-title) ol');
+                defaultValue = 1.125;
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + "rem";
+                }
+                incremented = false;
+            }
+            calcScroll();
+            return false;
+        });
+
+        $("#contrast").click(function(){
+            var elem = $('.post-template .codetalkpost-content');
+            elem.toggleClass('high-contrast');
+            return false;
+        });
+
+
+       $('#mail-page').click(function() {
+           mail_str = "mailto:?subject=Check out this post: \"Spatial Data Analysis <br/> with <em>R</em>\" by Vitor Casadei!";
+            mail_str += "&body=It's from codetalk, ";
+            mail_str += "The link is: " + location.href;
+            window.open(mail_str, 'Mailer');
+           return false;
+      });
+
+
+        function calcScroll() {
+            var scroller_anchor = $(".scroller_anchor").offset().top;
+            var contentSize = document.getElementById('codetalk-post-content').offsetHeight;
+
+            var scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+            var totalContentSize = scroller_anchor + contentSize;
+            var pos = 0;
+
+            // Barra de Scroll
+            var scrollContentPos = scrollPos - scroller_anchor;
+            pos = ((scrollContentPos*100)/totalContentSize)/100;
+            if ( pos <= 0 ) {
+                line.set(0);
+            } else if ( pos <= 1 ) {
+                line.set(pos);
+            } else {
+                line.set(1);
+            }
+        }
+
+        function setStickyDiv() {
+            // Get the position of the location where the scroller starts.
+            var scroller_anchor = $(".scroller_anchor").offset().top;
+            calcScroll();
+            // Check if the user has scrolled and the current position is after the scroller start location and if its not already fixed at the top
+            if ($(this).scrollTop() >= scroller_anchor && $('.scroller').css('position') != 'fixed')
+            {    // Change the CSS of the scroller to hilight it and fix it at the top of the screen.
+                $('.codetalk-post-control').css({
+                    'position': 'fixed',
+                    'top': '0px',
+                    'margin-top': '0px'
+
+                });
+                // Changing the height of the scroller anchor to that of scroller so that there is no change in the overall height of the page.
+                $('.scroller_anchor').css('height', '50px');
+            }
+            else if ($(this).scrollTop() < scroller_anchor && $('.codetalk-post-control').css('position') != 'relative')
+            {    // If the user has scrolled back to the location above the scroller anchor place it back into the content.
+
+                // Change the height of the scroller anchor to 0 and now we will be adding the scroller back to the content.
+                $('.scroller_anchor').css('height', '0px');
+
+                // Change the CSS and put it back to its original position.
+                $('.codetalk-post-control').css({
+                    'position': 'relative',
+                    'margin-top': '-20px'
+                });
+            }
+        }
+
+        $(window).scroll(function(e) {
+            setStickyDiv();
+        });
+    });
+
+</script>
+</head>
+<body class="post-template" itemscope itemtype="http://schema.org/WebPage">
+
+        <main id="codetalkpost-container-simple" class="codetalkpost-container-simple" role="main">
+            <header class="codetalkpost-header-simple">
+                <div class="codetalkpost-menu-header-simple">
+
+                    <a class="codetalkblog-logo" href="/">
+                        <img src="/images/logo.png" alt="Blog Logo" />
+                    </a>
+
+                <div class="codetalkblog-menu">
+    <div class="codetalkmobile-menu show-for-small">
+        <a href="#"><i class="fa fa-bars"></i></a>
+    </div>
+    <ul class="codetalkmenu">
+        <li class="codetalkmobile-close-btn show-for-small text-right">
+            <a href="#"><i class="fa fa-times"></i></a>
+        </li>
+        
+        <li>
+            
+                <a class="current-page" href="/">Articles</a>
+              
+        </li>
+        
+        <li>
+            
+                <a href="/about/">About</a>
+              
+        </li>
+        
+        <li>
+            
+                <a href="/categories/">Categories</a>
+              
+        </li>
+        
+    </ul>
+
+</div>
+            </div>
+            <div class="codetalk-breadcrumb">
+              
+              
+              
+                
+                
+              
+              <p>
+                <a href="/">Home</a> <i class="fa fa-angle-right"></i> <a href="/">Articles</a> <i class="fa fa-angle-right"></i> <a href="/categories/index.html#articles"> Articles</a> <i class="fa fa-angle-right"></i> <a href="/spatial-data-analysis-with-R/">Spatial Data Analysis <br/> with <em>R</em></a> &nbsp;&nbsp;&nbsp;
+              </p>
+            </div>
+            <div class="scroller_anchor"></div>
+            <div class="codetalk-post-control">
+              <span>
+                <a alt="Make the text bigger!" title="Make the text bigger!" class="font-plus" id="font-plus" href=><i class="fa fa-font"></i><i class="fa fa-plus"></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="Make the text smaller!" title="Make the text smaller!" id="font-minus" class="font-minus" href=><i class="fa fa-font"></i><i class="fa fa-minus"></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="Turn of text lights. Invert Colors" title="Turn of text lights. Invert Colors" class="contrast" id="contrast" href=><i class="fa fa-adjust"></i></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="E-mail this page!" title="E-mail this page!" id="mail-page" class="e-mail" href=><i class="fa fa-envelope-o"></i></a>
+            </span>
+              <div id="progr"></div>
+            </div>
+
+
+                <div class="codetalkpost-title-simple row">
+                    <div class="small-12 columns">
+                        <div class="codetalkpost-meta-simple">
+                            <h1>Spatial Data Analysis <br/> with <em>R</em></h1>
+                            <span>by <strong><a target="_blank" href="http://casadei.io">Vitor Casadei</a></strong>  &#8212; <strong><i class="fa fa-calendar"></i> <time datetime="2014-02-01T00:00:00-02:00">01 Feb 2014</time></strong></span>
+
+                            <span>on <a href="/categories/index.html#articles"> Articles</a> | </span>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+        <article id="codetalk-post-content" class="codetalkpost-content post tag-simple">
+            <div>
+                <div id="language-selector">
+                
+                
+                  <a href="/spatial-data-analysis-with-R/" class="en"><img src="/images/en.png"> en</a><br>
+                
+                  <a href="/cartographie-avec-R/" class="pt"><img src="/images/pt.png"> pt</a><br>
+                
+          </div>
+                <p>If <em>R</em> language has already become a reference in statistical analysis and data processing, it may be thanks to its hability to represent and visualize data. They can be used in order to visualize spatial data in the form of cartographic representations which, combined with its other features, makes it an excellent geographic information system. This article sets out to show, through the provision of relevant example, how <em>R</em> can handle spatial data by creating maps.</p>
+
+<h3 id="prerequisite">Prerequisite</h3>
+
+<p>Once <em>R</em> is installed on your computer, few libraries will be used: <code>rgdal</code> allows us to import and project shapefiles, <code>plotrix</code> creates color scales, and <code>classInt</code> assigns colors to map data. Once the libraries installed with <code>install.packages</code>, load them at the beginning of the session:</p>
+
+<p><code>r
+library('rgdal')      # Reading and projecting shapefiles
+library('plotrix')    # Creating color scales
+library('classInt')   # Assigning colors to data
+</code></p>
+
+<p>Graphics will be plot using <em>R</em> base functions. <code>ggplot2</code> is an alternative, but it seems less relevant here: longer and less legible code, unability to plot holes inside polygones, <code>fortify</code> and ploting can last much longer.</p>
+
+<h2 id="blank-france-map">Blank France map</h2>
+
+<h3 id="reading-shapefiles">Reading shapefiles</h3>
+
+<p>The <code>rgdal</code> library provides <code>readOGR()</code> in order to read shapefiles. <code>dsn</code> must contain the path where shapefiles are located, and <code>layer</code> the shapefile name, without extension. <code>readOGR</code> reads <code>.shp</code>, <code>.shx</code>, <code>.dbf</code> and <code>.prj</code> files. Departements of France are given by <a href="http://professionnels.ign.fr/geofla">Geofla</a>:</p>
+
+<p>```r
+# Reading departements
+departements &lt;- readOGR(dsn=”shp/geofla”,  layer=”DEPARTEMENT”)</p>
+
+<h1 id="reading-departements-boundaries-in-order-to-plot-france-boundaries">Reading departements boundaries in order to plot France boundaries</h1>
+<p>bounderies &lt;- readOGR(dsn=”shp/geofla”,  layer=”LIMITE_DEPARTEMENT”)
+bounderies &lt;- bounderies[bounderies$NATURE %in% c(‘Fronti\xe8re internationale’,’Limite c\xf4ti\xe8re’),]
+```</p>
+
+<p>In order to show neighbouring countries, we will use data provided by <a href="http://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/">Natural Earth</a>. We will select Europe countries only:</p>
+
+<p><code>r
+# Reading country and selecting Europe
+europe &lt;- readOGR(dsn="shp/ne/cultural", layer="ne_10m_admin_0_countries") 
+ &lt;- europe[europe$REGION_UN=="Europe",]
+</code></p>
+
+<h3 id="projection-and-plot">Projection and plot</h3>
+
+<p>The map will use the <a href="http://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000000387816&amp;fastPos=1&amp;fastReqId=2039166907&amp;categorieLien=cid&amp;oldAction=rechTexte">French official projection</a>, already declared in the Geofla <code>.prj</code> files. <code>spTransform</code> will be used for the European coutries.</p>
+
+<p>Then, we will first plot French boundaries, in order to center the map on France. Borders colors are defined in <code>border</code>, their tickness in <code>lwd</code> and the filling color in <code>col</code>.</p>
+
+<p>```r</p>
+
+<h1 id="projection">Projection</h1>
+<p>europe &lt;- spTransform(europe, CRS(“+init=epsg:2154”))</p>
+
+<h1 id="plot">Plot</h1>
+
+<p>pdf(‘france.pdf’,width=6,height=4.7)
+par(mar=c(0,0,0,0))</p>
+
+<p>plot(bounderies,  col=”#FFFFFF”)
+plot(europe,      col=”#E6E6E6”, border=”#AAAAAA”,lwd=1, add=TRUE)
+plot(bounderies,  col=”#D8D6D4”, lwd=6, add=TRUE)
+plot(departements,col=”#FFFFFF”, border=”#CCCCCC”,lwd=.7, add=TRUE)
+plot(bounderies,  col=”#666666”, lwd=1, add=TRUE)</p>
+
+<p>dev.off() 
+```</p>
+
+<p><a href="https://www.codetalk.me/medias/carto/france.pdf"><img src="https://www.codetalk.me/medias/carto/france.jpg" alt="France blank map" /></a></p>
+
+<h2 id="visualizing-a-data-population-density">Visualizing a data: population density</h2>
+
+<h3 id="reading-data">Reading data</h3>
+<p>The very large number of <em>communes</em> (the smallest administrative level in France) gives us excellent spatial data. Geofla provides us their bounderies, population and area. So we will plot population density:</p>
+
+<p>```r
+# Reading shapefile
+communes     &lt;- readOGR(dsn=”shp/geofla”, layer=”COMMUNE”)</p>
+
+<h1 id="calculate-density">Calculate density</h1>
+<p>communes$DENSITY &lt;- communes$POPULATION/communes$SUPERFICIE*100000
+```</p>
+
+<h3 id="color-scale">Color scale</h3>
+<p>In order to create a color scale, we will assign shades of blue to each percentile. <code>classIntervals</code> calculates percentiles, <code>smoothColors</code> create the blue scale, and <code>findColours</code> assigns blues depending on each commune depending on their population density. Then, we create a legend, with only five colors.</p>
+
+<p><code>r
+# Color scale
+col &lt;- findColours(classIntervals(
+            communes$DENSITY, 100, style="quantile"),
+            smoothColors("#0C3269",98,"white"))
+# Legend
+leg &lt;- findColours(classIntervals(
+            round(communes$DENSITY), 5, style="quantile"),
+            smoothColors("#0C3269",3,"white"),
+            under="less than", over="more than", between="–", 
+            cutlabels=FALSE)
+</code></p>
+
+<h3 id="plot-1">Plot</h3>
+<p>We can now plot the map. In order to use an embedded font in the PDF, we will use <code>cairo_pdf()</code> instead of <code>pdf</code>:</p>
+
+<p>```r
+# Exporting in PDF
+cairo_pdf(‘densite.pdf’,width=6,height=4.7)
+par(mar=c(0,0,0,0),family=”Myriad Pro”,ps=8)</p>
+
+<h1 id="ploting-the-map">Ploting the map</h1>
+<p>plot(bounderies, col=”#FFFFFF”)
+plot(europe,     col=”#E6E6E6”, border=”#AAAAAA”,lwd=1, add=TRUE)
+plot(bounderies, col=”#D8D6D4”, lwd=6, add=TRUE)
+plot(communes,   col=col, border=col, lwd=.1, add=TRUE)
+plot(bounderies, col=”#666666”, lwd=1, add=TRUE)</p>
+
+<h1 id="ploting-the-legend">Ploting the legend</h1>
+<p>legend(-10000,6387500,fill=attr(leg, “palette”),
+        legend=names(attr(leg,”table”)),
+        title = “Density (p/km²):”)</p>
+
+<p>dev.off() 
+```</p>
+
+<p><a href="https://www.codetalk.me/medias/carto/density.pdf"><img src="https://www.codetalk.me/medias/carto/density.jpg" alt="Population density in France" /></a></p>
+
+<h2 id="visualizing-an-external-data--incomes">Visualizing an external data : incomes</h2>
+<p>The main value is to plot data provided by external files. We will plot the median taxable income per consumption unit (<a href="http://www.insee.fr/fr/themes/detail.asp?reg_id=99&amp;ref_id=base-cc-rev-fisc-loc-menage">provided by INSEE</a>). <a href="https://www.codetalk.me/medias/carto/revenus.csv">We convert it in CSV</a>.</p>
+
+<h3 id="reading-and-supplementing-data">Reading and supplementing data</h3>
+
+<p>Unfortunately, data is missing for more than 5 000 communes, due to tax secrecy. We can “cheat” in order to improve the global render by assigning to those communes the canton (a larger administrative level) median income, given in the <a href="http://www.insee.fr/fr/themes/detail.asp?reg_id=99&amp;ref_id=base-cc-rev-fisc-loc-menage">same file</a>, <a href="https://www.codetalk.me/medias/carto/cantons.csv">converted in CSV</a>.</p>
+
+<p>```r
+# Loading communes data
+incomes &lt;- read.csv(‘csv/revenus.csv’)
+communes &lt;- merge(communes, incomes, by.x=”INSEE_COM”, by.y=”COMMUNE”)</p>
+
+<h1 id="loading-cantons-data">Loading cantons data</h1>
+<p>cantons  &lt;- read.csv(‘csv/cantons.csv’)</p>
+
+<h1 id="merging-data">Merging data</h1>
+<p>communes &lt;- merge(communes, cantons, by=”CANTON”, all.x=TRUE)</p>
+
+<h1 id="assigning-canton-median-income-to-communes-with-missing-data">Assigning canton median income to communes with missing data</h1>
+<p>communes$REVENUS[is.na(communes$REVENUS)] &lt;- communes$REVENUC[is.na(communes$REVENUS)]
+```</p>
+
+<h3 id="color-scale-1">Color scale</h3>
+<p>We generate color scale and legend:</p>
+
+<p>```r
+col &lt;- findColours(classIntervals(
+            communes$REVENUS, 100, style=”quantile”),
+            smoothColors(“#FFFFD7”,98,”#F3674C”))</p>
+
+<p>leg &lt;- findColours(classIntervals(
+            round(communes$REVENUS,0), 4, style=”quantile”),
+            smoothColors(“#FFFFD7”,2,”#F3674C”),
+            under=”moins de”, over=”plus de”, between=”–”, 
+            cutlabels=FALSE)
+```</p>
+
+<h3 id="plot-2">Plot</h3>
+<p>And we plot:</p>
+
+<p>```r
+cairo_pdf(‘incomes.pdf’,width=6,height=4.7)
+par(mar=c(0,0,0,0),family=”Myriad Pro”,ps=8)</p>
+
+<p>plot(boundaries, col=”#FFFFFF”)
+plot(europe,     col=”#F5F5F5”, border=”#AAAAAA”,lwd=1, add=TRUE)
+plot(boundaries, col=”#D8D6D4”, lwd=6, add=TRUE)
+plot(communes,   col=col, border=col, lwd=.1, add=TRUE)
+plot(boundaries, col=”#666666”, lwd=1, add=TRUE)</p>
+
+<p>legend(-10000,6337500,fill=attr(leg, “palette”),
+    legend=gsub(“\.”, “,”, names(attr(leg,”table”))),
+    title = “Median income:”)</p>
+
+<p>dev.off() 
+```</p>
+
+<p><a href="https://www.codetalk.me/medias/carto/incomes.pdf"><img src="https://www.codetalk.me/medias/carto/incomes.jpg" alt="Median taxable income per consumption unit in France in 2010" /></a></p>
+
+<h2 id="visualizing-map-data-the-road-network">Visualizing map data: the road network</h2>
+
+<p>We can also add map data: cities, urban areas, rivers, forests… We will here plot the French road network, thanks to <a href="http://professionnels.ign.fr/route500">Route 500</a>:</p>
+
+<p>```r
+roads &lt;- readOGR(dsn=”shp/geofla”,  layer=”TRONCON_ROUTE”)
+local     &lt;- roads[roads$VOCATION==”Liaison locale”,] 
+principal &lt;- roads[roads$VOCATION==”Liaison principale”,] 
+regional  &lt;- roads[roads$VOCATION==”Liaison r\xe9gionale”,] 
+highway &lt;- roads[roads$VOCATION==”Type autoroutier”,]</p>
+
+<p>cairo_pdf(‘roads.pdf’,width=6,height=4.7)
+par(mar=c(0,0,0,0),family=”Myriad Pro”,ps=8)</p>
+
+<p>plot(boundaries,  col=”#FFFFFF”)
+plot(europe,      col=”#F5F5F5”, border=”#AAAAAA”,lwd=1, add=TRUE)
+plot(boundaries,  col=”#D8D6D4”, lwd=6, add=TRUE)
+plot(departements,col=”#FFFFFF”, border=”#FFFFFF”,lwd=.7, add=TRUE)
+plot(local,       col=”#CBCBCB”, lwd=.1, add=TRUE)
+plot(principal,   col=”#CCCCCC”, lwd=.3, add=TRUE)
+plot(regional,    col=”#BBBBBB”, lwd=.5, add=TRUE)
+plot(highway,     col=”#AAAAAA”, lwd=.7, add=TRUE)
+plot(boundaries,  col=”#666666”, lwd=1, add=TRUE)</p>
+
+<p>dev.off() 
+```</p>
+
+<p><a href="https://www.codetalk.me/medias/carto/routes.pdf"><img src="https://www.codetalk.me/medias/carto/routes.jpg" alt="French roads network" /></a></p>
+
+<h2 id="blank-world-map">Blank world map</h2>
+
+<h3 id="reading-shapefiles-1">Reading shapefiles</h3>
+
+<p>We will load the following <a href="http://www.naturalearthdata.com/downloads">Natural Earth</a> shapefiles:</p>
+
+<p><code>r
+# Loading Shapefiles
+countries   &lt;- readOGR(dsn="shp/ne/cultural",layer="ne_110m_admin_0_countries")
+graticules  &lt;- readOGR(dsn="shp/ne/physical",layer="ne_110m_graticules_10") 
+bbox        &lt;- readOGR(dsn="shp/ne/physical",layer="ne_110m_wgs84_bounding_box")
+</code></p>
+
+<h3 id="projection-and-plot-1">Projection and plot</h3>
+
+<p>We will use the <em><a href="http://fr.wikipedia.org/wiki/Projection_de_Winkel-Tripel">Winkel Tripel</a></em> projection:</p>
+
+<p>```r
+# Winkel Tripel projection
+countries   &lt;- spTransform(countries,CRS(“+proj=wintri”))
+bbox        &lt;- spTransform(bbox,  CRS(“+proj=wintri”))
+graticules  &lt;- spTransform(graticules, CRS(“+proj=wintri”))</p>
+
+<h1 id="ploting-world-map">Ploting world map</h1>
+<p>pdf(‘world.pdf’,width=10,height=6) # Exportation en PDF
+par(mar=c(0,0,0,0))                # Marges nulles</p>
+
+<p>plot(bbox, col=”white”, border=”grey90”,lwd=1)
+plot(countries, col=”#E6E6E6”, border=”#AAAAAA”,lwd=1, add=TRUE)
+plot(graticules, col=”#CCCCCC33”, lwd=1, add=TRUE)</p>
+
+<p>dev.off()                          # Saving file
+```</p>
+
+<p><a href="https://www.codetalk.me/medias/carto/monde.pdf"><img src="https://www.codetalk.me/medias/carto/monde.jpg" alt="Carte du monde projetée en Winkel Tripel" /></a></p>
+
+<h2 id="visualizing-data-human-development-index">Visualizing data: Human Development Index</h2>
+
+<p>Most frequent usage consists of visualizing data with a color scale. Let’s plot the HDI, provided by the United Nations Develment Programme in a <a href="https://www.codetalk.me/medias/carto/hdi.csv">CSV file</a>. The procedure is as described above:</p>
+
+<p>```r
+# Loading data and merging dataframes
+hdi  &lt;- read.csv(‘csv/hdi.csv’)
+countries &lt;- merge(countries, hdi, by.x=”iso_a3”, by.y=”Abbreviation”)
+# Converting HDI in numeric
+countries$hdi &lt;- as.numeric(levels(countries$X2012.HDI.Value))[countries$X2012.HDI.Value]</p>
+
+<h1 id="generating-color-scale-and-assigning-colors">Generating color scale and assigning colors</h1>
+<p>col &lt;- findColours(classIntervals(countries$hdi, 100, style=”pretty”),
+                       smoothColors(“#ffffe5”,98,”#00441b”))</p>
+
+<h1 id="assigning-grey-to-missing-data">Assigning grey to missing data</h1>
+<p>col[is.na(countries$hdi)] &lt;- “#DDDDDD”</p>
+
+<h1 id="generating-legend">Generating legend</h1>
+<p>leg &lt;- findColours(classIntervals(round(countries$hdi,3), 7, style=”pretty”),
+                       smoothColors(“#ffffe5”,5,”#00441b”),
+                       under=”less than”, over=”more than”, between=”–”, cutlabels=FALSE)</p>
+
+<h1 id="ploting">Ploting</h1>
+<p>cairo_pdf(‘hdi.pdf’,width=10,height=6)
+par(mar=c(0,0,0,0),family=”Myriad Pro”,ps=8)</p>
+
+<p>plot(bbox, col=”white”, border=”grey90”,lwd=1)
+plot(countries,  col=col, border=col,lwd=.8, add=TRUE)
+plot(graticules,col=”#00000009”,lwd=1, add=TRUE)</p>
+
+<p>legend(-15000000,-3000000,fill=attr(leg, “palette”),
+    legend= names(attr(leg,”table”)),
+    title = “HDI in 2012 :”)
+dev.off() 
+```</p>
+
+<p><a href="https://www.codetalk.me/medias/carto/hdi.pdf"><img src="https://www.codetalk.me/medias/carto/hdi.jpg" alt="Human Development Index (HDI) in 2012" /></a></p>
+
+<h2 id="circles-visualization-most-populated-cities">Circles visualization: most populated cities</h2>
+
+<h3 id="reading-data-1">Reading data</h3>
+<p>An other kind of visualization is given by circles. Population of most populated cities is provided by <a href="http://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-populated-places/">Natural Earth</a>:</p>
+
+<p><code>r
+# Loading shapefile
+cities &lt;- readOGR(dsn="shp/ne/cultural",layer="ne_110m_populated_places") 
+cities &lt;- spTransform(cities,  CRS("+proj=wintri")) 
+</code></p>
+
+<h3 id="circle-size">Circle size</h3>
+
+<p>The data shall be proportionate to the circles areas, not the radius; so the radius is the square root of the population:</p>
+
+<p><code>r
+# Calculating circles radius
+cities$radius &lt;- sqrt(cities$POP2015)
+cities$radius &lt;- cities$radius/max(cities$radius)*3
+</code></p>
+
+<h3 id="plot-3">Plot</h3>
+
+<p>We plot the map:</p>
+
+<p>```r
+pdf(‘cities.pdf’,width=10,height=6)
+par(mar=c(0,0,0,0))</p>
+
+<p>plot(bbox, col=”white”,    border=”grey90”,lwd=1)
+plot(countries,  col=”#E6E6E6”,  border=”#AAAAAA”,lwd=1, add=TRUE)
+points(cities,col=”#8D111766”,bg=”#8D111766”,lwd=1, pch=21,cex=cities$radius)
+plot(graticules,col=”#CCCCCC33”,lwd=1, add=TRUE)</p>
+
+<p>dev.off() 
+```</p>
+
+<p><a href="https://www.codetalk.me/medias/carto/villes.pdf"><img src="https://www.codetalk.me/medias/carto/villes.jpg" alt="Most populated cities in the world" /></a></p>
+
+<h2 id="visualizing-map-data-urban-areas">Visualizing map data: urban areas</h2>
+
+<p><a href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-urban-area/">Natural Earth</a> provides urban areas shapefiles, derived from satellite data. Let’us map them with night lights colors[^urban]:</p>
+
+<p>```r
+areas  &lt;- readOGR(dsn=”shp/ne/cultural”,layer=”ne_10m_urban_areas”)
+areas &lt;- spTransform(areas, CRS(“+proj=wintri”))</p>
+
+<p>pdf(‘areas.pdf’,width=10,height=6)
+par(mar=c(0,0,0,0))
+plot(bbox, col=”#000000”,    border=”#000000”,lwd=1)
+plot(countries,  col=”#000000”,  border=”#000000”,lwd=1, add=TRUE)
+plot(areas,  col=”#FFFFFF”,  border=”#FFFFFF66”,lwd=1.5, add=TRUE)</p>
+
+<p>dev.off() 
+```</p>
+
+<p><a href="https://www.codetalk.me/medias/carto/urbain.pdf"><img src="https://www.codetalk.me/medias/carto/urbain.jpg" alt="World map (Winkel Tripel projection)" /></a></p>
+
+            </div>
+        </article>
+        <div class="cf"></div>
+        <div class="row text-center">
+            <section class="codetalkpost-share">
+                <a class="twitter-icon" href="https://twitter.com/intent/tweet?text=&quot;Spatial Data Analysis <br/> with <em>R</em>&quot;%20/spatial-data-analysis-with-R/%20via%20&#64;vcasadei"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a class="facebook-icon" href="https://www.facebook.com/sharer/sharer.php?u=/spatial-data-analysis-with-R/"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a class="google-icon" href="https://plus.google.com/share?url=/spatial-data-analysis-with-R/"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </section>
+        </div>
+        <div class="cf"></div>
+
+            <div class="codetalkauthor-info">
+                <div class="row">
+                    <section class="codetalkpost-author small-12 columns">
+                        
+                            <img src="/images/hmfaysal.jpg" class="codetalkpost-author-avatar" alt="Vitor Casadei's photo">
+                        
+                        
+                            <span class="author-label">Author</span>
+                            <h1>Vitor Casadei</h1>
+                        
+                        
+                            <p><a href="mailto:vitor@casadei.io" class="author-website"><i class="fa fa-envelope-o"></i> vitor@casadei.io</a> | <a href="http://casadei.io" class="author-website"><i class="fa fa-globe"></i> casadei.io</a></p>
+                        
+                        
+                            <p>I'm a Software Engineer from São Paulo area in Brazil and I like to create new stuff and to share what I learn and what I do. I also write in another blog - diariodoverde.com - (only in Portuguese) about the relationship between the environment and technology.</p>
+                        
+                    </section>
+                </div>
+            </div>
+
+
+        <div class="cf"></div>
+        
+        <div class="cf"></div>
+
+    <footer class="codetalksite-footer">
+    <div class="copyright">
+         <section>All content copyright <a href="/about">CodeTalk.me</a> &copy; 2015 &bull; All rights reserved.</section>
+         <section>Proudly published with <a class="icon-ghost" href="https://jekyllrb.com/">Jekyll</a></section>
+    </div>
+    <!-- <div class="social-icons">
+
+        
+        <a href="http://twitter.com/vcasadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-twitter fa-stack-1x"></i>
+            </span>
+        </a>
+        
+        
+        <a href="https://plus.google.com/+VitorCasadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-google-plus fa-stack-1x"></i>
+            </span>
+        </a>
+        
+        
+        <a href="http://instagram.com/vcasadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-instagram fa-stack-1x"></i>
+            </span>
+        </a>
+        
+        
+        <a href="http://github.com/vcasadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-github fa-stack-1x"></i>
+            </span>
+        </a>
+        
+        
+        <a href="http://facebook.com/vitor.casadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-facebook fa-stack-1x"></i>
+            </span>
+        </a>
+        
+    </div> -->
+
+    <div class="cf"></div>
+</footer>
+
+</main>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+    <script src="/assets/js/vendor/modernizr.js"></script>
+    <script src="/assets/js/foundation.min.js"></script>
+    
+    <script src="/assets/js/notepad.js"></script>
+    <script src="/assets/js/scripts.min.js"></script>
+    <script src="/assets/js/vendor/nprogress.js"></script>
+
+    <script>
+      $(document).foundation();
+    </script>
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66157305-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<script>NProgress.start();var interval=setInterval(function(){NProgress.inc()},1000);jQuery(window).load(function(){clearInterval(interval);NProgress.done()});jQuery(window).unload(function(){NProgress.start()});</script>
+
+
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Making <em>Jekyll</em> multilingual &vert; CodeTalk - A blog about Code and Technology</title>
+
+  
+    
+      <link rel="alternate" hreflang="pt" href="/rendre-jekyll-multilingue/" />
+    
+  
+    
+  
+<meta name="description" content="A blog about Code and Technology">
+<meta name="keywords" content="">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/images/logo.png">
+<meta name="twitter:title" content="Making <em>Jekyll</em> multilingual">
+<meta name="twitter:description" content="A blog about Code and Technology">
+<meta name="twitter:creator" content="@vcasadei">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Making <em>Jekyll</em> multilingual">
+<meta property="og:description" content="A blog about Code and Technology">
+<meta property="og:url" content="/making-jekyll-multilingual/">
+<meta property="og:site_name" content="CodeTalk - A blog about Code and Technology">
+<meta property="og:image" content="/images/">
+
+<meta name="google-site-verification" content="true">
+
+
+
+<link rel="canonical" href="/making-jekyll-multilingual/">
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="CodeTalk - A blog about Code and Technology Feed">
+<link rel="author" href="https://plus.google.com/+VitorCasadei?rel=author">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,600,300,800,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/assets/css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/css/vendor/normalize.css">
+    <link rel="stylesheet" href="/assets/css/vendor/nprogress.css">
+    <link rel="stylesheet" href="/assets/css/vendor/foundation.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/post.css">
+    <script src="/assets/js/vendor/jquery-1.11.1.min.js" charset="utf-8"></script>
+    <script src="/assets/js/progressbar.js/dist/progressbar.js" charset="utf-8"></script>
+
+
+
+    <link rel="shortcut icon" href="/icon/favicon.ico">
+    <link rel="shortcut icon" href="/icon/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/icon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon/favicon-16x16.png">
+    <meta name="msapplication-TileImage" content="/icon/ms-icon-144x144.png">
+
+<style type="text/css">@media only screen and (min-width:43.75em){.codetalkpost-content div>p:first-child:first-letter{float:left;font-size:4.688rem;line-height:4.375rem;padding-top:.25rem;padding-right:.5rem;padding-left:.188rem;font-family:serif}}</style>
+<script type="text/javascript">
+    var line = null;
+
+    $(window).ready(function(){
+        line = new ProgressBar.Line('#progr', {
+            strokeWidth: 1,
+            color: "#ffb800",
+            trailWidth: 1,
+            duration: 0,
+            svgStyle: {
+                display: 'block',
+                height: '100%'
+            },
+        });
+
+        line.set(0.0);
+        setStickyDiv();
+        var increment = 0.6;
+        var incremented = false;
+        $("#font-plus").click(function(){
+                var defaultValue = 1.125;
+                var elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p');
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + increment + "rem";
+                }
+                defaultValue = 1.625;
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p:first-child');
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + increment + "rem";
+                }
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) ul, .post-template .codetalkpost-content > div:not(.codetalkpost-title) ol');
+                defaultValue = 1.125;
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + increment + "rem";
+                }
+                incremented = true;
+                calcScroll();
+            return false;
+        });
+        $("#font-minus").click(function(){
+            if ( incremented ) {
+                var defaultValue = 1.125;
+                var elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p');
+
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + "rem";
+                }
+                defaultValue = 1.625;
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) p:first-child');
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + "rem";
+
+                }
+                elem = $('.post-template .codetalkpost-content > div:not(.codetalkpost-title) ul, .post-template .codetalkpost-content > div:not(.codetalkpost-title) ol');
+                defaultValue = 1.125;
+                for (i = 0; i < elem.length ; i++ ){
+                    elem[i].style.fontSize = defaultValue + "rem";
+                }
+                incremented = false;
+            }
+            calcScroll();
+            return false;
+        });
+
+        $("#contrast").click(function(){
+            var elem = $('.post-template .codetalkpost-content');
+            elem.toggleClass('high-contrast');
+            return false;
+        });
+
+
+       $('#mail-page').click(function() {
+           mail_str = "mailto:?subject=Check out this post: \"Making <em>Jekyll</em> multilingual\" by Vitor Casadei!";
+            mail_str += "&body=It's from codetalk, ";
+            mail_str += "The link is: " + location.href;
+            window.open(mail_str, 'Mailer');
+           return false;
+      });
+
+
+        function calcScroll() {
+            var scroller_anchor = $(".scroller_anchor").offset().top;
+            var contentSize = document.getElementById('codetalk-post-content').offsetHeight;
+
+            var scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
+            var totalContentSize = scroller_anchor + contentSize;
+            var pos = 0;
+
+            // Barra de Scroll
+            var scrollContentPos = scrollPos - scroller_anchor;
+            pos = ((scrollContentPos*100)/totalContentSize)/100;
+            if ( pos <= 0 ) {
+                line.set(0);
+            } else if ( pos <= 1 ) {
+                line.set(pos);
+            } else {
+                line.set(1);
+            }
+        }
+
+        function setStickyDiv() {
+            // Get the position of the location where the scroller starts.
+            var scroller_anchor = $(".scroller_anchor").offset().top;
+            calcScroll();
+            // Check if the user has scrolled and the current position is after the scroller start location and if its not already fixed at the top
+            if ($(this).scrollTop() >= scroller_anchor && $('.scroller').css('position') != 'fixed')
+            {    // Change the CSS of the scroller to hilight it and fix it at the top of the screen.
+                $('.codetalk-post-control').css({
+                    'position': 'fixed',
+                    'top': '0px',
+                    'margin-top': '0px'
+
+                });
+                // Changing the height of the scroller anchor to that of scroller so that there is no change in the overall height of the page.
+                $('.scroller_anchor').css('height', '50px');
+            }
+            else if ($(this).scrollTop() < scroller_anchor && $('.codetalk-post-control').css('position') != 'relative')
+            {    // If the user has scrolled back to the location above the scroller anchor place it back into the content.
+
+                // Change the height of the scroller anchor to 0 and now we will be adding the scroller back to the content.
+                $('.scroller_anchor').css('height', '0px');
+
+                // Change the CSS and put it back to its original position.
+                $('.codetalk-post-control').css({
+                    'position': 'relative',
+                    'margin-top': '-20px'
+                });
+            }
+        }
+
+        $(window).scroll(function(e) {
+            setStickyDiv();
+        });
+    });
+
+</script>
+</head>
+<body class="post-template" itemscope itemtype="http://schema.org/WebPage">
+
+        <main id="codetalkpost-container-simple" class="codetalkpost-container-simple" role="main">
+            <header class="codetalkpost-header-simple">
+                <div class="codetalkpost-menu-header-simple">
+
+                    <a class="codetalkblog-logo" href="/">
+                        <img src="/images/logo.png" alt="Blog Logo" />
+                    </a>
+
+                <div class="codetalkblog-menu">
+    <div class="codetalkmobile-menu show-for-small">
+        <a href="#"><i class="fa fa-bars"></i></a>
+    </div>
+    <ul class="codetalkmenu">
+        <li class="codetalkmobile-close-btn show-for-small text-right">
+            <a href="#"><i class="fa fa-times"></i></a>
+        </li>
+        
+        <li>
+            
+                <a class="current-page" href="/">Articles</a>
+              
+        </li>
+        
+        <li>
+            
+                <a href="/about/">About</a>
+              
+        </li>
+        
+        <li>
+            
+                <a href="/categories/">Categories</a>
+              
+        </li>
+        
+    </ul>
+
+</div>
+            </div>
+            <div class="codetalk-breadcrumb">
+              
+              
+              
+                
+                
+              
+              <p>
+                <a href="/">Home</a> <i class="fa fa-angle-right"></i> <a href="/">Articles</a> <i class="fa fa-angle-right"></i> <a href="/categories/index.html#articles"> Articles</a> <i class="fa fa-angle-right"></i> <a href="/making-jekyll-multilingual/">Making <em>Jekyll</em> multilingual</a> &nbsp;&nbsp;&nbsp;
+              </p>
+            </div>
+            <div class="scroller_anchor"></div>
+            <div class="codetalk-post-control">
+              <span>
+                <a alt="Make the text bigger!" title="Make the text bigger!" class="font-plus" id="font-plus" href=><i class="fa fa-font"></i><i class="fa fa-plus"></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="Make the text smaller!" title="Make the text smaller!" id="font-minus" class="font-minus" href=><i class="fa fa-font"></i><i class="fa fa-minus"></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="Turn of text lights. Invert Colors" title="Turn of text lights. Invert Colors" class="contrast" id="contrast" href=><i class="fa fa-adjust"></i></i></a> &nbsp;&nbsp;&nbsp; <i class="fa fa-ellipsis-v"></i> &nbsp;&nbsp;&nbsp; <a alt="E-mail this page!" title="E-mail this page!" id="mail-page" class="e-mail" href=><i class="fa fa-envelope-o"></i></a>
+            </span>
+              <div id="progr"></div>
+            </div>
+
+
+                <div class="codetalkpost-title-simple row">
+                    <div class="small-12 columns">
+                        <div class="codetalkpost-meta-simple">
+                            <h1>Making <em>Jekyll</em> multilingual</h1>
+                            <span>by <strong><a target="_blank" href="http://casadei.io">Vitor Casadei</a></strong>  &#8212; <strong><i class="fa fa-calendar"></i> <time datetime="2014-09-07T00:00:00-03:00">07 Sep 2014</time></strong></span>
+
+                            <span>on <a href="/categories/index.html#articles"> Articles</a> | </span>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+        <article id="codetalk-post-content" class="codetalkpost-content post tag-simple">
+            <div>
+                <div id="language-selector">
+                
+                
+                  <a href="/making-jekyll-multilingual/" class="en"><img src="/images/en.png"> en</a><br>
+                
+                  <a href="/rendre-jekyll-multilingue/" class="pt"><img src="/images/pt.png"> pt</a><br>
+                
+          </div>
+                <p>J<em>ekyll</em> has a very flexible design that allows a great freedom of choice, allowing the user to simply introduce features that are not integrated into its engine. This is particularly the case when one wants to create a multilingual website: while CMS remain very rigid and often require plugins, few filters are sufficient to achieve it with <em>Jekyll</em>.</p>
+
+<p>This article aims to present a way to create a multilingual site with <em>Jekyll</em>. <em>Jekyll</em> have to be installed[[the article <a href="https://www.codetalk.me/static-website-with-jekyll/">Static website with <em>Jekyll</em></a> explains how to install and use <em>Jekyll</em> in order to get a simple website]] on your computer and you should be able to know how to generate a simple website.</p>
+
+<h3 id="goals">Goals</h3>
+<p>Our website can be translated in as many languages as wanted. In the following examples, it will have three languages: English, French, and Chinese. Each page may be translated or not in the various languages[[regardless of the version, they may be pages which are not translated in each language]]. On each page, the entire contents — article, date, menus, URL — must be in the same language.</p>
+
+<p>A language selector, as the one on the top right of this website, will show the actual language and the different translations available[[the selector musn’t lead to the translated homepage, but to the translation of the current page]].</p>
+
+<p>Everything will work without any plugin, in order to get a good compatibility with the future versions of <em>Jekyll</em> and to be able to generate the site in <code>safe</code> mode and thus to be able to host it on <a href="https://pages.github.com/">GitHub Pages</a>.</p>
+
+
+            </div>
+        </article>
+        <div class="cf"></div>
+        <div class="row text-center">
+            <section class="codetalkpost-share">
+                <a class="twitter-icon" href="https://twitter.com/intent/tweet?text=&quot;Making <em>Jekyll</em> multilingual&quot;%20/making-jekyll-multilingual/%20via%20&#64;vcasadei"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a class="facebook-icon" href="https://www.facebook.com/sharer/sharer.php?u=/making-jekyll-multilingual/"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a class="google-icon" href="https://plus.google.com/share?url=/making-jekyll-multilingual/"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" title="Share on Google+">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+            </section>
+        </div>
+        <div class="cf"></div>
+
+            <div class="codetalkauthor-info">
+                <div class="row">
+                    <section class="codetalkpost-author small-12 columns">
+                        
+                            <img src="/images/hmfaysal.jpg" class="codetalkpost-author-avatar" alt="Vitor Casadei's photo">
+                        
+                        
+                            <span class="author-label">Author</span>
+                            <h1>Vitor Casadei</h1>
+                        
+                        
+                            <p><a href="mailto:vitor@casadei.io" class="author-website"><i class="fa fa-envelope-o"></i> vitor@casadei.io</a> | <a href="http://casadei.io" class="author-website"><i class="fa fa-globe"></i> casadei.io</a></p>
+                        
+                        
+                            <p>I'm a Software Engineer from São Paulo area in Brazil and I like to create new stuff and to share what I learn and what I do. I also write in another blog - diariodoverde.com - (only in Portuguese) about the relationship between the environment and technology.</p>
+                        
+                    </section>
+                </div>
+            </div>
+
+
+        <div class="cf"></div>
+        
+        <div class="cf"></div>
+
+    <footer class="codetalksite-footer">
+    <div class="copyright">
+         <section>All content copyright <a href="/about">CodeTalk.me</a> &copy; 2015 &bull; All rights reserved.</section>
+         <section>Proudly published with <a class="icon-ghost" href="https://jekyllrb.com/">Jekyll</a></section>
+    </div>
+    <!-- <div class="social-icons">
+
+        
+        <a href="http://twitter.com/vcasadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-twitter fa-stack-1x"></i>
+            </span>
+        </a>
+        
+        
+        <a href="https://plus.google.com/+VitorCasadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-google-plus fa-stack-1x"></i>
+            </span>
+        </a>
+        
+        
+        <a href="http://instagram.com/vcasadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-instagram fa-stack-1x"></i>
+            </span>
+        </a>
+        
+        
+        <a href="http://github.com/vcasadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-github fa-stack-1x"></i>
+            </span>
+        </a>
+        
+        
+        <a href="http://facebook.com/vitor.casadei">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                <i class="fa fa-facebook fa-stack-1x"></i>
+            </span>
+        </a>
+        
+    </div> -->
+
+    <div class="cf"></div>
+</footer>
+
+</main>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/assets/js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+    <script src="/assets/js/vendor/modernizr.js"></script>
+    <script src="/assets/js/foundation.min.js"></script>
+    
+    <script src="/assets/js/notepad.js"></script>
+    <script src="/assets/js/scripts.min.js"></script>
+    <script src="/assets/js/vendor/nprogress.js"></script>
+
+    <script>
+      $(document).foundation();
+    </script>
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-66157305-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<script>NProgress.start();var interval=setInterval(function(){NProgress.inc()},1000);jQuery(window).load(function(){clearInterval(interval);NProgress.done()});jQuery(window).unload(function(){NProgress.start()});</script>
+
+
+</body>
+</html>
